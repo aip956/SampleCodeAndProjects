@@ -2,111 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 const songs = require('./models/songs.js')
-const songs2 = [
-    {
-      "ID": 1,
-      "Song": "Ac-cent-tchu-ate the Positive"
-    },
-    {
-      "ID": 2,
-      "Song": "Accidents Will Happen"
-    },
-    {
-      "ID": 3,
-      "Song": "Adeste Fideles"
-    },
-    {
-      "ID": 4,
-      "Song": "Ad-Lib Blues"
-    },
-    {
-      "ID": 5,
-      "Song": "An Affair to Remember (Our Love Affair)"
-    },
-    {
-      "ID": 6,
-      "Song": "After You've Gone"
-    },
-    {
-      "ID": 7,
-      "Song": "Ain't She Sweet"
-    },
-    {
-      "ID": 8,
-      "Song": "Ain't Cha Ever Comin' Back?"
-    },
-    {
-      "ID": 9,
-      "Song": "Air For English Horn"
-    },
-    {
-      "ID": 10,
-      "Song": "Alice Blue Gown"
-    },
-    {
-      "ID": 11,
-      "Song": "All Alone"
-    },
-    {
-      "ID": 12,
-      "Song": "All By Myself"
-    },
-    {
-      "ID": 13,
-      "Song": "All I Do Is Dream of You"
-    },
-    {
-      "ID": 14,
-      "Song": "All I Need is the Girl"
-    },
-    {
-      "ID": 15,
-      "Song": "All My Tomorrows"
-    },
-    {
-      "ID": 16,
-      "Song": "All of Me"
-    },
-    {
-      "ID": 17,
-      "Song": "All of You"
-    },
-    {
-      "ID": 18,
-      "Song": "All or Nothing at All"
-    },
-    {
-      "ID": 19,
-      "Song": "All the Things You Are"
-    },
-    {
-      "ID": 20,
-      "Song": "All the Way"
-    },
-    {
-      "ID": 21,
-      "Song": "All the Way Home"
-    },
-    {
-      "ID": 22,
-      "Song": "All This and Heaven Too"
-    },
-    {
-      "ID": 23,
-      "Song": "All Through the Day"
-    },
-    {
-      "ID": 24,
-      "Song": "Almost Like Being in Love"
-    },
-    {
-      "ID": 25,
-      "Song": "Always"
-    }
-]
 const myMax = songs.length - 1;
 const myMin = 0;
-
+const wives = "Nancy Barbato, Ava Gardner, Mia Farrow, Barbara Sinatra"
+const picture = "https://en.wikipedia.org/wiki/File:Frank_Sinatra_(1957_studio_portrait_close-up).jpg"
 
 
 app.get('/', function(req, res) {
@@ -114,6 +13,25 @@ app.get('/', function(req, res) {
     var randSong = getSong(myMin, myMax) 
       res.send("Here's a random song: " + randSong);
 })
+
+app.get('/birth_date', function(req, res) {
+      res.send("Frank's birthday is December 12, 1915");
+})
+
+app.get('/birth_city', function(req, res) {
+    res.send("Frank was born in Hoboken, New Jersey");
+})
+
+app.get('/wives', function(req, res) {
+    res.send(wives);
+})
+
+app.get('/picture', function(req, res) {
+    res.send(`
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Frank_Sinatra_%281957_studio_portrait_close-up%29.jpg/455px-Frank_Sinatra_%281957_studio_portrait_close-up%29.jpg" >
+    `);
+})
+
 
 
 function getSong(myMin, myMax) {
