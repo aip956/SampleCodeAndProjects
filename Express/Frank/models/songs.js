@@ -4524,3 +4524,5 @@ const songs = [
       "Song": "Zing! Went the Strings of My Heart"
     }
    ]
+
+   module.exports = songs;

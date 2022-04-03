@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const songs = [
+const songs = require('./models/songs.js')
+const songs2 = [
     {
       "ID": 1,
       "Song": "Ac-cent-tchu-ate the Positive"
@@ -124,7 +125,7 @@ function getSong(myMin, myMax) {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 //   console.log(i);
-  console.log(myMax);
-  console.log(myMin);
-  console.log(songs);
+//   console.log(myMax);
+//   console.log(myMin);
+//   console.log(songs[i]);
 })
