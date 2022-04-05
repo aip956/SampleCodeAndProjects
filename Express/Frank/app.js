@@ -7,17 +7,16 @@ const myMin = 0;
 const wives = "Nancy Barbato, Ava Gardner, Mia Farrow, Barbara Sinatra"
 
 
-// Authentication; https://stackabuse.com/handling-authentication-in-express-js/
-// npm install express-handlebars
-// npm install body-parser cookie-parser
-const exphbs = require('express-handlebars');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-app.use(express.urlencoded({extended:false}));
+// Uses bcrypt
+// https://www.youtube.com/watch?v=Ud5xKCYQTjM
+
+app.get('/public', function(req, res) {
+    res.send("Everybody can see this page");
+})
 
 
-
-app.get("/",(req,res,next)=>{
+// https://www.geeksforgeeks.org/how-to-check-user-authentication-in-get-method-using-node-js/?ref=gcse
+app.get("/protected",(req,res,next)=>{
     // Checking the header of the authorization
    var authheader=req.headers.authorization;
    console.log(authheader)
@@ -37,10 +36,10 @@ app.get("/",(req,res,next)=>{
    var pass = auth[1];
  
    // Checking the details
-   if (user == 'admin' && pass == 'password') {
-     res.send("Welcome you are authorized")
+   if (user == 'admin' && pass == 'admin') {
+     res.send("Welcome, authenticated client")
    } else {
-       var err = new Error('You are not authenticated!');
+       var err = new Error('401 Not authorized');
        res.setHeader('WWW-Authenticate', 'Basic');
        err.status = 401;
        return next(err);
