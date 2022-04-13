@@ -1,0 +1,61 @@
+<!-- It's like Moving Box and the Windows screen saver. When the box hits a side, it bounces in the opposite direction.
+
+I found this challenging because I did not use a separate variable in Moving Box for the change increment. But I needed to change the direction, so needed another variable that would change once the box position was 0 or the view height/width.
+
+I also originally used the min-width and min-height to define the box dimensions. This was incorrect; it needs to be clientWidth and clientHeight to accommodate responsive sizing.
+
+LOGIC
+Define left and top positions, width and height of box, view width and height, and x and y position changes
+Increment/decrement x and y position until either hits x 0 or view width, or y hits 0 or view height 
+Once it does, change the x or y position change to the opposite direction  -->
+
+
+
+
+<html style='background-color: black'>
+    <div id="my_bouncing_box" style= "background-color: blue; border-radius: 3px; position: absolute; left: 0px; top: 0px; min-width: 100px; min-height: 100px; text-align: center; font-weight: bold; color: #999;" >antheaip964@gmail.com</div>
+    <script type="text/javascript">
+      // YOUR CODE
+  
+  my_box = document.getElementById("my_bouncing_box");
+  var left = parseInt(my_box.style.left, 10);
+  var topsy = parseInt(my_box.style.top, 10);
+  var boxWidth = parseInt(my_box.clientWidth, 10);
+  var boxHeight = parseInt(my_box.clientHeight, 10);
+  var viewWidth = parseInt(window.innerWidth, 10)-boxWidth;
+  var viewHeight = parseInt(window.innerHeight)-boxHeight;
+
+  
+  // Initial change in position/velocity
+  var dx = 1;
+  var dy = 1;
+  
+  setInterval(function() {
+    // These four need to be in the function
+  leftpx = left + "px";
+  toppx = topsy + "px";
+  viewWidthpx = viewWidth + "px";
+  viewHeightpx = viewHeight + "px";
+  my_box.style.left = leftpx;
+  my_box.style.top = toppx;
+  
+  
+  // Once box hits the side, the velocity changes direction
+    if (left < 0 || left > viewWidth) {
+        dx = -dx;
+      }
+    if (topsy < 0 || topsy > viewHeight) {
+        dy = -dy;
+      }
+  
+    // Increment the position
+    left += dx;
+    console.log("Left:"+left)
+    topsy += dy;
+    console.log("Topsy:"+topsy);
+  
+     }, 30);
+
+    </script>
+  </html>
+  
