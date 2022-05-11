@@ -12,7 +12,7 @@ GET on /protected. This action will be protected by a HTTP Basic access authenti
 
 This app is tested using curl commands in terminal; the protected route does not show on localhost; please test in terminal with curl </br>
 
-Can be tested in terminal:
+Can be tested in terminal:</br>
 curl http://localhost:8080/
 </br>
 curl http://localhost:8080/birth_date
