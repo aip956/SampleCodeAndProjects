@@ -14,11 +14,19 @@ This app is tested using curl commands in terminal; the protected route does not
 
 Can be tested in terminal:
 curl http://localhost:8080/
+</br>
 curl http://localhost:8080/birth_date
+</br>
 curl http://localhost:8080/birth_city
+</br>
 curl http://localhost:8080/wives
+</br>
 curl http://localhost:8080/picture
+</br>
 curl http://localhost:8080/public
+</br>
 curl http://localhost:8080/protected
+</br>
 curl admin:admin@localhost:8080/protected
+</br>
 
