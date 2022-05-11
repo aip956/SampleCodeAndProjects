@@ -10,4 +10,15 @@ GET on /picture. This action will give Frank Sinatra's picture. Uses res.redirec
 GET on /public. This action will print "Everybody can see this page" </br>
 GET on /protected. This action will be protected by a HTTP Basic access authentication and print "Welcome, authenticated client" if you are authorized with the login admin and password admin otherwise it will provide a 401 Not authorized. </br>
 
-This app is tested using curl commands in terminal; the protected route does not show on localhost </br>
+This app is tested using curl commands in terminal; the protected route does not show on localhost; please test in terminal with curl </br>
+
+Can be tested in terminal:
+curl http://localhost:8080/
+curl http://localhost:8080/birth_date
+curl http://localhost:8080/birth_city
+curl http://localhost:8080/wives
+curl http://localhost:8080/picture
+curl http://localhost:8080/public
+curl http://localhost:8080/protected
+curl admin:admin@localhost:8080/protected
+
