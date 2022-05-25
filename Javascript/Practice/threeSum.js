@@ -21,7 +21,9 @@ var threeSum = function(nums) {
                     // console.log((arrOfSorts.includes(sortedArr)))
                    console.log("25 arrSort incl sorted", array.every(element => {arrOfSorts.includes(element); }));
                    console.log("26 arrSort not incl sorted", !array.every(element => {arrOfSorts.includes(element); }));
-                    if (!array.every(element => {arrOfSorts.includes(element)})) {
+                   console.log("24 arrSort not incl sorted", !array.some(a => arrOfSorts.every((v, w) => v === a[w])));
+                    // if (!array.every(element => {arrOfSorts.includes(element)})) {
+                        if (!array.some(a => arrOfSorts.every((v, w) => v === a[w]))) {
                         arrOfSorts.push(sortedArr);
                         console.log("26 arrOfSorts", arrOfSorts);
                         outputArr.push(array);
