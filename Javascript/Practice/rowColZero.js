@@ -17,13 +17,15 @@
 
 
   
-  function rowColumnZero(matrix) {
+function rowColumnZero(matrix) {
     var output = matrix;
     // console.log("18Matrix",matrix);
     // console.log("19Output",output);
     var zeroArr = [];
     var i_0, j_0, i, j;
   
+    // Find the indices of the zeros, add 
+    // to zeroArr
     for (i = 0; i < 3; i++) { // rows
       for (j = 0; j < 3; j++) { // columns 
         console.log("24ij", i,j);
@@ -37,22 +39,27 @@
       console.log("33 0Arr:", zeroArr)
     } // closes for loop
 
-      for (m = 0; m < zeroArr.length; m++) {
-            console.log("37 m arr ele", m);
-            i_0 = zeroArr[m][0];
-            j_0 = zeroArr[m][1];
-            console.log("40 i0, j0", i_0, j_0);
+    // For each 0 indices/locations
+    for (m = 0; m < zeroArr.length; m++) {
+        console.log("37 m arr ele", m);
+        i_0 = zeroArr[m][0];
+        j_0 = zeroArr[m][1];
+        console.log("40 i0, j0", i_0, j_0);
 
+        // For each row of the input matrix
         for (p = 0; p < matrix.length; p++) {
             console.log("43length", matrix.length);
             console.log("44arr len",(matrix[p]).length);
             console.log("45 p row", p)
-          
 
+            // For each colum of row p
             for (q = 0; q < (matrix[p]).length; q++) {
                 console.log("46 q col", q);
                 console.log("48", output[p]);
                 console.log("49 j_0", j_0);
+
+                // If the p-column has a 0
+                // change the element to 0
                 if (q === j_0) {
                     output[p][q] = 0;
                     console.log("51pq", p, q);
@@ -60,6 +67,8 @@
                     console.log("55q", q);
                 } //closes if q
             } // closes for q
+            
+            // If row p has a 0, make the row 0's
             if (p == i_0) {
                 output[p] = [0,0,0];
                 console.log("61 p, output", p, output[p]);
