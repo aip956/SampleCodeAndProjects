@@ -47,6 +47,7 @@
 // factor_0 = Math.ceil(costs[1]/costs[0]) 
 // costs[1]*3 > costs[2]; if there are > 7*3 consec days, cheaper to buy 15-day
 // factor_1 = Math.ceil(costs[2]/costs[1]) 
+// but 3 * 7-day < 30-day + 7-day
 
 
 

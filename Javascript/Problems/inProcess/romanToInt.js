@@ -51,4 +51,27 @@
 // if C followed by M => 900
 // IXL = 49
 
+// split
 // From back of string
+
+
+var romanToInt = function(s) {
+    let splS = s.split('');
+    let splSLen = splS.length;
+    let Int = 0;
+    console.log(splSLen);
+    for (index = splSLen - 1; index >= 0; index --) {
+        if (splS[index] = "V") {
+            if (splS[index - 1] = "I") {
+                Int = Int + 4;
+                console.log("Index:", index);
+                console.log("Int:", Int);
+            }
+        } 
+    }
+
+
+};
+
+
+console.log(romanToInt("MCMXCIV"));
