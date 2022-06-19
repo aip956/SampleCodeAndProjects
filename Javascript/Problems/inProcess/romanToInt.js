@@ -60,17 +60,30 @@ var romanToInt = function(s) {
     let splSLen = splS.length;
     let Int = 0;
     console.log(splSLen);
-    for (index = splSLen - 1; index >= 0; index --) {
-        if (splS[index] = "V") {
-            if (splS[index - 1] = "I") {
+    console.log("splS:", splS);
+    for (index = 0; index <= splSLen; index ++) {
+        console.log("Index:", index);
+        console.log("splS[ind]", splS[index]);
+        console.log("67, Int:", Int);
+        console.log("68", splS[index] == "V");
+        console.log("69", splS[index] == "C");
+        // C
+        if (splS[index] == "C") {
+            if (splS[index + 1] = "M") {
+                Int = Int + 900;
+                console.log("73,Int:", Int);
+                index++;
+            }
+        }
+
+        if (splS[index] == "V") {
+            if (splS[index + 1] = "I") {
                 Int = Int + 4;
-                console.log("Index:", index);
-                console.log("Int:", Int);
+                console.log("70,Int:", Int);
+                index++;
             }
         } 
     }
-
-
 };
 
 
