@@ -12,7 +12,7 @@ void fill_array(int* array, char* str) {
     int index;
     printf("CURRENT STRING: %s\n", str);
     for (index = 0; str[index] != '\0'; index++) {
-        if (array[(int)str[index]] != '"') { 
+        if (str[index]] != '"') { 
             // str = input string
             // str[index] = element of input string; char or ascii int
             // array[(int)str[index]] is the count of the character
