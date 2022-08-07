@@ -1,2 +1,0 @@
-my_ngram: my_ngram.c
-	gcc -o my_ngram my_ngram.c
