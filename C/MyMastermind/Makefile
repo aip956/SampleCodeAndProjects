@@ -1,13 +1,16 @@
 all: my_mastermind
 
-my_mastermind: main.o randoSecret.o
-	gcc -Wall -Werror -Wextra -o my_mastermind main.o randoSecret.o
+my_mastermind: main1.o 
+	gcc -Wall -Werror -Wextra -o my_mastermind main1.o
 
-main.o: main.c
-	gcc -c -Wall -Werror -Wextra main.c
+# my_mastermind: main1.o ranSecret.o
+# 	gcc -Wall -Werror -Wextra -o my_mastermind main1.o ranSecret.o
 
-randoSecret.o: randoSecret.c
-	gcc -c -Wall -Werror -Wextra randoSecret.c 
+main1.o: main1.c
+	gcc -c -Wall -Werror -Wextra main1.c
+
+# randoSecret.o: ranSecret.c
+# 	gcc -c -Wall -Werror -Wextra ranSecret.c 
 
 
 # my_ngram.o: my_ngram.c
@@ -20,6 +23,6 @@ fclean: clean
 	rm -f my_mastermind
 
 clean:
-	rm main.o
-	rm randoSecret.o
+	rm main1.o
+	rm ranSecret.o
 

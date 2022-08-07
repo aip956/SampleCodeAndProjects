@@ -1,12 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <unistd.h>
-#include "randoSecret.h"
+#include "ranSecret.h"
 #define MAX_SECRET_SIZE 128
+#include <time.h>
+
+int max_Tries;
+int secrArr[MAX_SECRET_SIZE];
+int secret_len;
 
 
-
- int my_strlen(char* param_1) {
+int my_strlen(char* param_1) {
 // a = param_1 // param_1 is my pointer; = a = Program
     int index = 0;
     while (param_1[index] != '\0') {
@@ -55,21 +59,38 @@ char checkSecret(char* inp_secret, int secret_len) {
     return isInpSecrValid;
 } // Closes function
 
-char makeSecretArr(char* inp_secret) {
-    int secret[MAX_SECRET_SIZE];
-    int secret_len = my_strlen(inp_secret);
-
+char makeSecretArr(char* inp_secret, int secret_len) {
+    int secrArr[MAX_SECRET_SIZE]={};
+    // int secret_len = my_strlen(inp_secret);
+    printf("strlen: %d\n", secret_len);
+    printf("64inpsec: %s\n", inp_secret);
+    printf("65: %d\n", checkSecret(inp_secret, secret_len) == 1);
     if (checkSecret(inp_secret, secret_len) == 1) {
         for (int i = 0; i < secret_len; i++) {
-            secret[i] = atoi(&inp_secret[i]);
+            secrArr[i] = atoi(&inp_secret[i]);
+            printf("68: %d\n", secrArr[i]);
         } // Closes for
     } // Closes if checkSecret valid
     // if checkSecret not valid, return 0
         else {
             return 0;
         }
-    printf("56: %d\n", *secret);
-    return *secret;
+    printf("74: %d\n", *secrArr);
+    return *secrArr;
+} // Closes function
+
+int ranSecret(secret_len) {
+    srand(time(NULL));
+    for (int i = 0; i < secret_len; i++) {
+         secrArr[i] = (rand() % 8);
+         printf("84 %d\n", secrArr[i]);
+        // printf("%s\n", &secret[0]);
+        // printf("%d\n", secret[i]);
+    } // Closes for int i
+    printf("85 %d\n", *secrArr);
+     printf("87 %d\n", secrArr[1]);
+      printf("88 %d\n", secrArr[2]);
+    return *secrArr;
 } // Closes function
 
 char makeMaxTries(char* inp_tries) {
@@ -77,6 +98,7 @@ char makeMaxTries(char* inp_tries) {
 } // Closes function
 
 int main(int ac, char** av) {
+
     // printf("Input qty: %d\n", ac);
     // printf("%s\n", av[2]);
 
@@ -93,12 +115,17 @@ int main(int ac, char** av) {
             // If flag is a c for av[1] or av[3]
             printf("70 isflagC: %d\n", isFlagC(av[av_ind]));
             if (isFlagC(av[av_ind]) == 1) {
-                // printf("78: %s\n", av[av_ind+1]);
-                int secrArr = makeSecretArr(av[av_ind+1]);
+
+                secret_len = my_strlen(av[av_ind+1]);
+                int secrArr = makeSecretArr(av[av_ind+1], secret_len);
                 // printf("97 %d\n", makeSecretArr(av[av_ind+1]));
 
                 printf("98 %d\n", secrArr);
             } // Closes if it's "-c"
+                // else {
+                    int secrArr = ranSecret(secret_len);
+                    printf("121ranSecr: %d\n", secrArr);
+                // }
             printf("90 isflagT: %d\n", isFlagT(av[av_ind]));
             if (isFlagT(av[av_ind]) == 1) {
                 int max_Tries = makeMaxTries(av[av_ind+1]);
@@ -109,7 +136,7 @@ int main(int ac, char** av) {
     } // If ac > 3
 
     // else {
-        printf("112 %d\n", randoSecret());
+        // printf("131 %d\n", ranSecret());
     // }
 
 
@@ -128,3 +155,8 @@ int main(int ac, char** av) {
 
 return 0;
 }
+
+
+
+
+//  ./my_mastermind -c "0123" -t "4"

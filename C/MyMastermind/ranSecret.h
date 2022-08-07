@@ -4,7 +4,7 @@
 
 
 
-int randoSecret();
+int ranSecret();
 
 
 #endif

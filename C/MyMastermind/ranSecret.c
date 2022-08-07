@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "randoSecret.h"
+#include "ranSecret.h"
 #define MAX_SECRET_SIZE 128
+#include <time.h>
 
 
-int randoSecret() {
-    int secret[MAX_SECRET_SIZE];
-    for (int i = 0; i < 4; i++) {
+int main() {
+    srand(time(NULL));
+    int secret[MAX_SECRET_SIZE] = {};
+    for (int i = 0; i < 5; i++) {
         // int ranNum = (rand() % 8);
-        secret[i] = (rand() % 8);
+        secret[i] = (rand()%8);
         // printf("%s\n", &secret[0]);
         // printf("%d\n", secret[i]);
     } // Closes for int i
