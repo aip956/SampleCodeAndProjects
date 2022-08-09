@@ -6,7 +6,7 @@
 #include <time.h>
 
 int max_Tries;
-int secrArr[MAX_SECRET_SIZE];
+char secrArr[MAX_SECRET_SIZE];
 int secret_len;
 
 
@@ -51,7 +51,7 @@ char checkSecret(char* inp_secret, int secret_len) {
     // Check input secret is valid, and paste into secret array
     // inp_secret is the input string after -c flag
     for (int i = 0; i < secret_len; i++) {
-        if (inp_secret[i] < 48 || inp_secret[i] > 57) {
+        if (inp_secret[i] < 48 || inp_secret[i] > 55) {
             printf("Wrong input! \n");
             return isInpSecrValid = 0;
         } // Closes if not ascii 0 - 9
@@ -59,7 +59,9 @@ char checkSecret(char* inp_secret, int secret_len) {
     return isInpSecrValid;
 } // Closes function
 
-char makeSecretArr(char* inp_secret, int secret_len, int* secrArr) {
+
+
+char makeSecretArr(char* inp_secret, int secret_len, char** secrArr) {
     int i;
     // int secret_len = my_strlen(inp_secret);
     printf("66strlen: %d\n", secret_len);
@@ -67,33 +69,20 @@ char makeSecretArr(char* inp_secret, int secret_len, int* secrArr) {
     printf("65: %d\n", checkSecret(inp_secret, secret_len) == 1);
     if (checkSecret(inp_secret, secret_len) == 1) {
         for (i = 0; i < secret_len; i++) {
-            secrArr[i] = atoi(&inp_secret[i]);
-            printf("68: %d\n", secrArr[i]);
+            *secrArr[i] = inp_secret[i];
+            printf("68: %s\n", secrArr[i]);
         } // Closes for
-        // secrArr[i] = '\0';
     }
       else // if inp_secret is not valid
       {
-        //  printf("run ranSecret"); 
-        ranSecret(secret_len, secrArr);
-        printf("127ranSecr: %d\n", *secrArr);
+         printf("run ranSecret"); 
+        ranSecret(secret_len, **secrArr);
+        printf("127ranSecr: %s\n", *secrArr);
         }
      // Closes if checkSecret valid
     // if checkSecret not valid, return 0
-    printf("74: %d\n", *secrArr);
-    return *secrArr;
-} // Closes function
-
-int ranSecret(int secret_len, int* secrArr) {
-    printf("I'm generating a random secret \n");
-    printf("88strlen: %d\n", secret_len);
-    srand(time(NULL));
-    for (int i = 0; i < secret_len; i++) {
-         secrArr[i] = (rand() % 8);
-         printf("84 %d\n", secrArr[i]);
-    } // Closes for int i
-    printf("92 %d\n", *secrArr);
-    return *secrArr;
+    printf("74: %s\n", *secrArr);
+    return **secrArr;
 } // Closes function
 
 char makeMaxTries(char* inp_tries) {
@@ -109,12 +98,12 @@ int main(int ac, char** av) {
             printf("70 isflagC: %d\n", isFlagC(av[av_ind]));
             if (isFlagC(av[av_ind]) == 1) {
                 secret_len = my_strlen(av[av_ind+1]);
-                makeSecretArr(av[av_ind+1], secret_len, secrArr);
-                printf("98 %d\n", *secrArr);
+                makeSecretArr(av[av_ind+1], secret_len, **secrArr);
+                printf("98 %s\n", secrArr);
             } // Closes if it's "-c"
             else {
                 // printf("125 ranSecret");
-                printf("I'll generate a secret of length 4 %d\n", ranSecret(4, secrArr));
+                printf("I'll generate a secret of length 4 %c\n", ranSecret(4, *secrArr));
                 } // Closes if no -c flag
             printf("90 isflagT: %d\n", isFlagT(av[av_ind]));
             if (isFlagT(av[av_ind]) == 1) {
@@ -124,7 +113,7 @@ int main(int ac, char** av) {
         } // For ac = 3 or 5 
     } // If ac > 3
     else {
-        printf("I'll generate a secret of length 4 %d\n", ranSecret(4, secrArr));
+        printf("I'll generate a secret of length 4 %d\n", ranSecret(4, *secrArr));
     } // Closes if no -c
 
 // Input

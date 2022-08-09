@@ -5,17 +5,16 @@
 #include <time.h>
 
 
-int main() {
+char ranSecret(int secret_len, char** secrArr) {
+// int main(int secret_len, char** secrArr) {
+    secret_len = 4;
+    printf("I'm generating a random secret \n");
+    printf("88strlen: %d\n", secret_len);
     srand(time(NULL));
-    int secret[MAX_SECRET_SIZE] = {};
-    for (int i = 0; i < 5; i++) {
-        // int ranNum = (rand() % 8);
-        secret[i] = (rand()%8);
-        // printf("%s\n", &secret[0]);
-        // printf("%d\n", secret[i]);
+    for (int i = 0; i < secret_len; i++) {
+        char ranNum =  (48 + (rand() % 8));
+        printf("%c\n", ranNum);
+         *secrArr[i] = ranNum;
     } // Closes for int i
-    printf("15 %d\n", *secret);
-     printf("%d\n", secret[1]);
-      printf("%d\n", secret[2]);
-    return *secret;
+    return **secrArr;
 } // Closes function

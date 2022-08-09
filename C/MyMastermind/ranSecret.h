@@ -5,6 +5,7 @@
 
 
 int ranSecret();
+// void main();
 
 
 #endif
