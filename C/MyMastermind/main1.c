@@ -124,11 +124,24 @@ int main(int ac, char** av) {
 // Input
     printf("Input section \n");
     printf("Will you find the secret code?\n---\nRound 0\nPlease enter a valid guess\n");
-    int buffer[100]
-    read
+    char buffer = (char *)(calloc(4, sizeof(char)));
+    printf("%c\n", buffer);
+   
+    // Read in the input
+    // READ()
+    // Validate; are they all numbers; right length?
+
+
+    // COMPARE()
+    // Input the secrArr and guessArr
+
+
+
 
 // game loop
 // until end of file
+
+
 
 
 
