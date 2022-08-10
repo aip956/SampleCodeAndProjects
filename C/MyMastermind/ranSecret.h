@@ -4,7 +4,7 @@
 
 
 
-int ranSecret();
+char* ranSecret();
 // void main();
 
 
