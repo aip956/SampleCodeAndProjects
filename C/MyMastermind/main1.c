@@ -8,6 +8,9 @@
 int max_Tries;
 char secrArr[MAX_SECRET_SIZE] = {0};
 int secret_len;
+int secr_elem_count_arr[MAX_SECRET_SIZE] = {0};
+int guess_elem_count_arr[MAX_SECRET_SIZE] = {0};
+int i;
 
 
 int my_strlen(char* param_1) {
@@ -73,13 +76,13 @@ char makeSecretArr(char* inp_secret, int secret_len, char* secrArr) {
             printf("68: %c\n", secrArr[i]);
         } // Closes for
     }
-      else // if inp_secret is not valid
-      {
-         printf("run ranSecret"); 
-         // pass the pointer itself
-        ranSecret(4, secrArr);
-        printf("127ranSecr: %s\n", secrArr);
-        }
+    //   else // if inp_secret is not valid
+    //   {
+    //      printf("run ranSecret"); 
+    //      // pass the pointer itself
+    //     ranSecret(4, secrArr);
+    //     printf("127ranSecr: %s\n", secrArr);
+    //     }
      // Closes if checkSecret valid
     // if checkSecret not valid, return 0
     printf("74: %s\n", secrArr);
@@ -90,8 +93,31 @@ char makeMaxTries(char* inp_tries) {
     return atoi(inp_tries);
 } // Closes function
 
+
+void fill_array(int* array, char* str) {
+    int index;
+    // printf("CURRENT STRING: %s\n", str);
+    for (index = 0; str[index] != '\0'; index++) {
+        // if (array[(int)str[index]] != '"') 
+        {
+        array[(int)str[index]] += 1;
+        // printf("%c <=> %d\n", str[index], array[index]);
+        } // Closes if
+    } // Closes for
+} // Closes function
+
+void print_array(int* array, int size_array) {
+    int index;
+    for (index = 0; index < size_array; index++){
+        // bypass garbage characters
+        if (array[index] > 0) {
+            printf("%c:%d\n", index, array[index]);
+        } // Closes if
+    } // Closes for
+} // Closes function
+
+
 int main(int ac, char** av) {
-    // find . -name '-c'
     if (ac >= 3) {
         printf("59: %d\n", ac);
 
@@ -117,23 +143,50 @@ int main(int ac, char** av) {
 
     } // If ac > 3
     else {
-        printf("I'll generate a secret of length 4");
-        printf("%s\n", ranSecret(4, secrArr));
+        secret_len = 4;
+        printf("I'll generate a secret of length 4 \n");
+        printf("%s\n", ranSecret(secret_len, secrArr));
+
     } // Closes if no -c
 
 // Input
+    printf("sec_len: %d\n", secret_len);
     printf("Input section \n");
-    printf("Will you find the secret code?\n---\nRound 0\nPlease enter a valid guess\n");
-    char buffer = (char *)(calloc(4, sizeof(char)));
-    printf("%c\n", buffer);
-   
-    // Read in the input
-    // READ()
+    printf("Will you find the secret code?\n---\nRound 0\nPlease enter a valid guess of length %d, numbers 0 - 7\n", secret_len);
+    char* buffer = (char *)(calloc(secret_len, sizeof(char)));
+    char inp_guess = read(0, buffer, 10);
+    printf("guess: %s\n", buffer);
+    // for (int i = 0; i < 10; i++) {
+    //     printf("i: %d\n", i);
+    //     printf("buffer[i]: %c\n", buffer[i]);
+    // }
+    printf("guess: %c\n", inp_guess);
+
+    // is guess right length?
+    int guess_len = my_strlen(buffer)-1;
+    printf("guess_len: %d\n", guess_len);
+
+    // is guess valid characters?
+    if (guess_len != secret_len) {
+        printf("Wrong number of inputs\n");
+    }
+
+  
     // Validate; are they all numbers; right length?
-
-
+     if (checkSecret(buffer, guess_len) == 1) {
+         printf("Right kind of input\n");
+     }
     // COMPARE()
-    // Input the secrArr and guessArr
+       // Input the secrArr and guessArr
+    // for(i = 0; i < secret_len; i++) {
+        printf("182 \n");
+        fill_array(&secr_elem_count_arr[0], secrArr);
+        print_array(&secr_elem_count_arr[0], secret_len);
+        fill_array(&guess_elem_count_arr[0], buffer);
+        print_array(&guess_elem_count_arr[0], guess_len);
+    // }
+
+ 
 
 
 

@@ -10,7 +10,6 @@ int i;
 char* ranSecret(int secret_len, char* secrArr1) {
 
 // int main(int secret_len, char** secrArr) {
-    secret_len = 4;
     printf("I'm generating a random secret \n");
     printf("13strlen: %d\n", secret_len);
     srand(time(NULL));
