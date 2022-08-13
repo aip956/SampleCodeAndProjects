@@ -10,7 +10,7 @@ char secrArr[MAX_SECRET_SIZE] = {0};
 int secret_len;
 int secr_elem_count_arr[MAX_SECRET_SIZE] = {0};
 int guess_elem_count_arr[MAX_SECRET_SIZE] = {0};
-int i;
+int i, X, Y;
 
 
 int my_strlen(char* param_1) {
@@ -99,10 +99,11 @@ void fill_array(int* array, char* str) {
     // printf("CURRENT STRING: %s\n", str);
     for (index = 0; str[index] != '\0'; index++) {
         // if (array[(int)str[index]] != '"') 
-        {
+        // {
         array[(int)str[index]] += 1;
-        // printf("%c <=> %d\n", str[index], array[index]);
-        } // Closes if
+        // printf("%c <=> %d\n", str[index], array[(int)str[index]]);
+        // printf("ascii: %d\n", str[index]);
+        // } // Closes if
     } // Closes for
 } // Closes function
 
@@ -110,12 +111,41 @@ void print_array(int* array, int size_array) {
     int index;
     for (index = 0; index < size_array; index++){
         // bypass garbage characters
+        // printf("index: %d\n", index);
         if (array[index] > 0) {
             printf("%c:%d\n", index, array[index]);
         } // Closes if
     } // Closes for
 } // Closes function
 
+// Exact matches
+int compareForX(char* secrArr, char* guess, int secret_len) {
+    X = 0;
+    for (i = 0; i < secret_len; i++) {
+        if (secrArr[i] == guess[i]) {
+            X++;
+            printf("ind: %d, X: %d\n", i, X);
+        } // Closes if
+    } // Closes for
+    return X;
+} // Closes function
+
+// Right number, wrong place matches
+int compareForY(char* secr_elem_count_arr, char* secrArr, char* guess_elem_count_arr, int secret_len) {
+    Y = 0;
+    for (i = 0; i < secret_len; i++) {
+        printf("secrArr[i]: %c\n", secrArr[i]);
+        if (secr_elem_count_arr[secrArr[i]] > 0 && guess_elem_count_arr[secrArr[i]] > 0) {
+            if (secr_elem_count_arr[secrArr[i]] <= guess_elem_count_arr[secrArr[i]]) {
+                Y += secr_elem_count_arr[secrArr[i]];
+            } // Closes if secr count < guess count
+            else {
+                Y += guess_elem_count_arr[secrArr[i]];
+            } // Closes else
+        } // Closes if not = 0
+    } // Closes for
+    return Y;
+} // Closes function
 
 int main(int ac, char** av) {
     if (ac >= 3) {
@@ -151,6 +181,7 @@ int main(int ac, char** av) {
 
 // Input
     printf("sec_len: %d\n", secret_len);
+    printf("secrArr: %s\n", secrArr);
     printf("Input section \n");
     printf("Will you find the secret code?\n---\nRound 0\nPlease enter a valid guess of length %d, numbers 0 - 7\n", secret_len);
     char* buffer = (char *)(calloc(secret_len, sizeof(char)));
@@ -178,13 +209,13 @@ int main(int ac, char** av) {
      }
     // COMPARE()
        // Input the secrArr and guessArr
-    // for(i = 0; i < secret_len; i++) {
         printf("182 \n");
-        fill_array(&secr_elem_count_arr[0], secrArr);
-        print_array(&secr_elem_count_arr[0], secret_len);
-        fill_array(&guess_elem_count_arr[0], buffer);
-        print_array(&guess_elem_count_arr[0], guess_len);
-    // }
+        fill_array(secr_elem_count_arr, secrArr);
+        print_array(secr_elem_count_arr, MAX_SECRET_SIZE);
+        fill_array(guess_elem_count_arr, buffer);
+        print_array(guess_elem_count_arr, MAX_SECRET_SIZE);
+        printf("X: %d\n", compareForX(secrArr, buffer, secret_len)); 
+        printf("Y: %d\n", compareForX((secr_elem_count_arr, secrArr, guess_elem_count_arr, secret_len)); 
 
  
 
