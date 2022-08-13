@@ -10,7 +10,7 @@ char secrArr[MAX_SECRET_SIZE] = {0};
 int secret_len;
 int secr_elem_count_arr[MAX_SECRET_SIZE] = {0};
 int guess_elem_count_arr[MAX_SECRET_SIZE] = {0};
-int i, X, Y;
+int i, X, Y, Z;
 
 
 int my_strlen(char* param_1) {
@@ -113,7 +113,7 @@ void print_array(int* array, int size_array) {
         // bypass garbage characters
         // printf("index: %d\n", index);
         if (array[index] > 0) {
-            printf("%c:%d\n", index, array[index]);
+            // printf("%c:%d\n", index, array[index]);
         } // Closes if
     } // Closes for
 } // Closes function
@@ -124,47 +124,54 @@ int compareForX(char* secrArr, char* guess, int secret_len) {
     for (i = 0; i < secret_len; i++) {
         if (secrArr[i] == guess[i]) {
             X++;
-            printf("ind: %d, X: %d\n", i, X);
+            // printf("ind: %d, X: %d\n", i, X);
         } // Closes if
     } // Closes for
     return X;
 } // Closes function
 
 // Right number, wrong place matches
-int compareForY(char* secr_elem_count_arr, char* secrArr, char* guess_elem_count_arr, int secret_len) {
-    Y = 0;
-    for (i = 0; i < secret_len; i++) {
-        printf("secrArr[i]: %c\n", secrArr[i]);
-        if (secr_elem_count_arr[secrArr[i]] > 0 && guess_elem_count_arr[secrArr[i]] > 0) {
-            if (secr_elem_count_arr[secrArr[i]] <= guess_elem_count_arr[secrArr[i]]) {
-                Y += secr_elem_count_arr[secrArr[i]];
+int compareForZ(int* secr_elem_count_arr, int* guess_elem_count_arr) {
+    Z = 0;
+    for (i = 48; i < 56; i++) {
+        // printf("i: %d %c\n", i, i);
+        // printf("secrArr[i]: %c\n", secrArr[i]);
+        // printf("142secElAr[i] %d\n", secr_elem_count_arr[i]);
+        // printf("143guessElAr[i] %d\n", guess_elem_count_arr[i]);
+
+        if (secr_elem_count_arr[i] > 0 && guess_elem_count_arr[i] > 0) {
+            if (secr_elem_count_arr[i] <= guess_elem_count_arr[i]) {
+                Z += secr_elem_count_arr[i];
+                // printf("144 Z: %d\n", Z);
             } // Closes if secr count < guess count
             else {
-                Y += guess_elem_count_arr[secrArr[i]];
+                // printf("147 Z: %d\n", Z);
+                Z += guess_elem_count_arr[i];
+                // printf("149 Z: %d\n", Z);
             } // Closes else
         } // Closes if not = 0
     } // Closes for
-    return Y;
+    return Z;
 } // Closes function
 
 int main(int ac, char** av) {
     if (ac >= 3) {
-        printf("59: %d\n", ac);
+        // printf("59: %d\n", ac);
 
         for (int av_ind = 1; av_ind <= ac-2; av_ind+=2) {
             // Is av[1] a "-c" or "-t"
             // If flag is a c for av[1] or av[3]
-            printf("70 isflagC: %d\n", isFlagC(av[av_ind]));
+            // printf("70 isflagC: %d\n", isFlagC(av[av_ind]));
             if (isFlagC(av[av_ind]) == 1) {
                 secret_len = my_strlen(av[av_ind+1]);
                 makeSecretArr(av[av_ind+1], secret_len, secrArr);
-                printf("98 %s\n", secrArr);
+                // printf("98 %s\n", secrArr);
             } // Closes if it's "-c"
             // else {
             //     // printf("125 ranSecret");
             //     printf("I'll generate a secret of length 4 %c\n", ranSecret(4, *secrArr));
             //     } // Closes if no -c flag
-            printf("90 isflagT: %d\n", isFlagT(av[av_ind]));
+            // printf("90 isflagT: %d\n", isFlagT(av[av_ind]));
             if (isFlagT(av[av_ind]) == 1) {
                 int max_Tries = makeMaxTries(av[av_ind+1]);
                 printf("maxTries: %d\n", max_Tries);
@@ -215,7 +222,11 @@ int main(int ac, char** av) {
         fill_array(guess_elem_count_arr, buffer);
         print_array(guess_elem_count_arr, MAX_SECRET_SIZE);
         printf("X: %d\n", compareForX(secrArr, buffer, secret_len)); 
-        printf("Y: %d\n", compareForX((secr_elem_count_arr, secrArr, guess_elem_count_arr, secret_len)); 
+        printf("Z: %d\n", compareForZ(&secr_elem_count_arr[0], &guess_elem_count_arr[0])); 
+        Y = Z - X;
+        // printf("Y: %d\n", Y);
+        printf("Well placed pieces: %d\n", X);
+        printf("Misplaced pieces: %d\n", Y);
 
  
 
@@ -239,3 +250,17 @@ int main(int ac, char** av) {
 
 // input validation vs. basic loop of game
 // allocate space for new string or array; fill with input
+
+
+
+// if (secr_elem_count_arr[i] > 0 && guess_elem_count_arr[(int)secrArr[i]] > 0) {
+//             if (secr_elem_count_arr[(int)secrArr[i]] <= guess_elem_count_arr[(int)secrArr[i]]) {
+//                 Z += secr_elem_count_arr[(int)secrArr[i]];
+//                 printf("144 Z: %d\n", Z);
+//             } // Closes if secr count < guess count
+//             else {
+//                 printf("147 Z: %d\n", Z);
+//                 Z += guess_elem_count_arr[(int)secrArr[i]];
+//                 printf("149 Z: %d\n", Z);
+//             } // Closes else
+//         } // Closes if not = 0
