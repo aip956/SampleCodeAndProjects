@@ -32,11 +32,11 @@ int my_strlen(char* param_1) {
     int index = 0;
     int length = 0;
     for (index = 0; param_1[index] != '\0'; index++) {
-        printf("20 ind: %d\n", index);
+        // printf("20 ind: %d\n", index);
         if (param_1[index] > 30) {
-            printf("ascii: %d\n", param_1[index]);
+            // printf("ascii: %d\n", param_1[index]);
             length++;
-            printf("23 Ind/Len: %d\n", length);
+            // printf("23 Ind/Len: %d\n", length);
         } // Closes if
     } // Closes for
     return length;
@@ -112,8 +112,8 @@ void fill_array(int* array, char* str) {
         // if (array[(int)str[index]] != '"') 
         // {
         array[(int)str[index]] += 1;
-        printf("%c <=> %d\n", str[index], array[(int)str[index]]);
-        printf("ascii: %d\n", str[index]);
+        // printf("%c <=> %d\n", str[index], array[(int)str[index]]);
+        // printf("ascii: %d\n", str[index]);
         // } // Closes if
     } // Closes for
 } // Closes function
@@ -128,7 +128,6 @@ void print_array(int* array, int size_array) {
         } // Closes if
     } // Closes for
 } // Closes function
-
 // Exact matches
 int compareForX(char* secrArr, char* guess, int secret_len) {
     X = 0;
