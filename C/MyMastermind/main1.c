@@ -16,11 +16,17 @@ int i, X, Y, Z, round_num;
 int my_strlen(char* param_1) {
 // a = param_1 // param_1 is my pointer; = a = Program
     int index = 0;
-    while (param_1[index] != '\0') {
-    index++;
-    }
-    return index;
- }
+    int length = 0;
+    for (index = 0; param_1[index] != '\0'; index++) {
+        printf("20 ind: %d\n", index);
+        if (param_1[index] > 30) {
+            printf("ascii: %d\n", param_1[index]);
+            length++;
+            printf("23 Ind/Len: %d\n", length);
+        } // Closes if
+    } // Closes for
+    return length;
+ } // Closes function
 
 int isFlagC (char* inp_flag){
     int i;
@@ -101,8 +107,8 @@ void fill_array(int* array, char* str) {
         // if (array[(int)str[index]] != '"') 
         // {
         array[(int)str[index]] += 1;
-        // printf("%c <=> %d\n", str[index], array[(int)str[index]]);
-        // printf("ascii: %d\n", str[index]);
+        printf("%c <=> %d\n", str[index], array[(int)str[index]]);
+        printf("ascii: %d\n", str[index]);
         // } // Closes if
     } // Closes for
 } // Closes function
@@ -194,63 +200,53 @@ int main(int ac, char** av) {
     printf("192 maxTries: %d\n", max_Tries);
     printf("secrArr: %s\n", secrArr);
     printf("Will you find the secret code?\nPlease enter a valid guess of length %d, numbers 0 - 7\n", secret_len);
-
     round_num = 0;
         // printf("Round: %d\n", round_num);
     while (round_num < max_Tries) {
-    printf("---\n");
-    printf("Round %d\n", round_num);
+        printf("---\n");
+        printf("Round %d\n", round_num);
         char* buffer = (char *)(calloc(secret_len, sizeof(char)));
         read(0, buffer, 10);
-        // printf("guess: %s\n", buffer);
+        printf("guess: %s\n", buffer);
 
         // is guess right length?
-        int guess_len = my_strlen(buffer)-1;
+        int guess_len = my_strlen(buffer);
         // printf("guess_len: %d\n", guess_len);
 
         // is guess valid characters?
-        if (guess_len != secret_len) {
-            printf("Wrong number of inputs\n");
-        }
-
+        if (guess_len == secret_len) {
+          // Validate; are they all numbers; right length?
+            if (checkSecret(buffer, guess_len) == 1) {
+                printf("Right kind of input\n");
+                // COMPARE
+                int guess_elem_count_arr[MAX_SECRET_SIZE] = {0};
+                fill_array(guess_elem_count_arr, buffer);
+                print_array(guess_elem_count_arr, MAX_SECRET_SIZE);
+                printf("X: %d\n", compareForX(secrArr, buffer, secret_len)); 
+                printf("Z: %d\n", compareForZ(&secr_elem_count_arr[0], &guess_elem_count_arr[0])); 
+                Y = Z - X;
+                printf("Well placed pieces: %d\n", X);
+                printf("Misplaced pieces: %d\n", Y);
     
-        // Validate; are they all numbers; right length?
-        if (checkSecret(buffer, guess_len) == 1) {
-            printf("Right kind of input\n");
-        
-            // COMPARE()
-            // Input the secrArr and guessArr
-            printf("182 \n");
-            int guess_elem_count_arr[MAX_SECRET_SIZE] = {0};
-            fill_array(guess_elem_count_arr, buffer);
-            print_array(guess_elem_count_arr, MAX_SECRET_SIZE);
-            printf("X: %d\n", compareForX(secrArr, buffer, secret_len)); 
-            printf("Z: %d\n", compareForZ(&secr_elem_count_arr[0], &guess_elem_count_arr[0])); 
-            Y = Z - X;
-            // printf("Y: %d\n", Y);
-            printf("Well placed pieces: %d\n", X);
-            printf("Misplaced pieces: %d\n", Y);
-        } // Closes check secret
-        if (X == secret_len) {
-            printf("Congratz! You did it!\n");
-            return 0;
-        }
+                if (X == secret_len) {
+                    printf("Congratz! You did it!\n");
+                    return 0;
+                } // Closes check for win
+            } // Closes check for valid guess are num chars
+        } // Closes if guess = secret length 
+        else {
+            printf("Wrong number of inputs\n");
+        } // Closes if guess != secret length
+
+                    
+                    
         round_num++;
-    } // Closes tries
+    } // Closes while tries < max tries
+
     if (round_num >= max_Tries) {
         printf("Sorry, too many tries. The code was: %s\n", secrArr);
+        return 0;
     }
-
-
-
-// game loop
-// until end of file
-
-
-
-
-
-
     return 0;
 } // Closes main
 
