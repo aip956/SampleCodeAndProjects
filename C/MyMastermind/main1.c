@@ -10,7 +10,7 @@ char secrArr[MAX_SECRET_SIZE] = {0};
 int secret_len;
 int secr_elem_count_arr[MAX_SECRET_SIZE] = {0};
 int guess_elem_count_arr[MAX_SECRET_SIZE] = {0};
-int i, X, Y, Z;
+int i, X, Y, Z, round_num;
 
 
 int my_strlen(char* param_1) {
@@ -173,9 +173,10 @@ int main(int ac, char** av) {
             //     } // Closes if no -c flag
             // printf("90 isflagT: %d\n", isFlagT(av[av_ind]));
             if (isFlagT(av[av_ind]) == 1) {
-                int max_Tries = makeMaxTries(av[av_ind+1]);
-                printf("maxTries: %d\n", max_Tries);
+                max_Tries = makeMaxTries(av[av_ind+1]);
+                printf("177 maxTries: %d\n", max_Tries);
             } // Closes if it's "-t"
+            printf("179 maxTries: %d\n", max_Tries);
         } // For ac = 3 or 5 
 
     } // If ac > 3
@@ -188,14 +189,15 @@ int main(int ac, char** av) {
 
 // Input
     printf("sec_len: %d\n", secret_len);
-    printf("maxTries: %d\n", max_Tries);
+    printf("192 maxTries: %d\n", max_Tries);
     printf("secrArr: %s\n", secrArr);
     printf("Input section \n");
-    printf("Will you find the secret code?\n---\nRound 0\nPlease enter a valid guess of length %d, numbers 0 - 7\n", secret_len);
-    
-    for (i = 0; i < max_Tries; i++) {
+    printf("Will you find the secret code?\nPlease enter a valid guess of length %d, numbers 0 - 7\n", secret_len);
+    round_num = 0;
+        // printf("Round: %d\n", round_num);
+    while (round_num < max_Tries) {
     printf("---\n");
-    printf("Round %d\n", i);
+    printf("Round %d\n", round_num);
         char* buffer = (char *)(calloc(secret_len, sizeof(char)));
         char inp_guess = read(0, buffer, 10);
         printf("guess: %s\n", buffer);
@@ -233,7 +235,7 @@ int main(int ac, char** av) {
             printf("Well placed pieces: %d\n", X);
             printf("Misplaced pieces: %d\n", Y);
 
- 
+        round_num++;
     } // Closes tries
 
 
