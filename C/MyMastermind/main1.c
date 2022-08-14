@@ -208,12 +208,8 @@ int main(int ac, char** av) {
         char* buffer = (char *)(calloc(secret_len, sizeof(char)));
         read(0, buffer, 10);
         printf("guess: %s\n", buffer);
-
-        // is guess right length?
         int guess_len = my_strlen(buffer);
         // printf("guess_len: %d\n", guess_len);
-
-        // is guess valid characters?
         if (guess_len == secret_len) {
           // Validate; are they all numbers; right length?
             if (checkSecret(buffer, guess_len) == 1) {
@@ -227,7 +223,6 @@ int main(int ac, char** av) {
                 Y = Z - X;
                 printf("Well placed pieces: %d\n", X);
                 printf("Misplaced pieces: %d\n", Y);
-    
                 if (X == secret_len) {
                     printf("Congratz! You did it!\n");
                     return 0;
@@ -237,12 +232,8 @@ int main(int ac, char** av) {
         else {
             printf("Wrong number of inputs\n");
         } // Closes if guess != secret length
-
-                    
-                    
-        round_num++;
     } // Closes while tries < max tries
-
+        round_num++;
     if (round_num >= max_Tries) {
         printf("Sorry, too many tries. The code was: %s\n", secrArr);
         return 0;
