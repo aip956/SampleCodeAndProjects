@@ -162,3 +162,10 @@ int compareForZ(int* secr_elem_count_arr, int* guess_elem_count_arr) {
     } // Closes for
     return Z;
 } // Closes function
+
+
+
+    // print_array(secr_elem_count_arr, MAX_SECRET_SIZE);
+    // printf("sec_len: %d\n", secret_len);
+    // printf("192 maxTries: %d\n", max_Tries);
+    // printf("secrArr: %s\n", secrArr);

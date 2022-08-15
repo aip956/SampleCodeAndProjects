@@ -35,20 +35,29 @@ int main(int ac, char** av) {
     } // Closes if no -c
 
 // Input
-
     fill_array(secr_elem_count_arr, secrArr);
-    // print_array(secr_elem_count_arr, MAX_SECRET_SIZE);
-    // printf("sec_len: %d\n", secret_len);
-    printf("192 maxTries: %d\n", max_Tries);
-    // printf("secrArr: %s\n", secrArr);
     printf("Will you find the secret code?\nPlease enter a valid guess of length %d, numbers 0 - 7\n", secret_len);
 
+    // Start rounds of input
     for (round_num = 0; round_num < max_Tries; round_num++) {
         printf("---\n");
         printf("Round %d\n", round_num);
-        top:;
+        top:; // Come back here if error
+        int bytes;
         char* buffer = (char *)(calloc(secret_len, sizeof(char)));
-        read(0, buffer, 10);
+        while ((bytes = read(0, buffer, 10)) >= 0) {
+            if (bytes == 0) {
+                printf("Read EOF!\n");
+                return 0;
+            } // Closes if
+            else {
+                buffer[bytes] = '\0';
+                printf("%d\n", bytes);
+                printf("%s\n", buffer);
+            } // Closes else
+        
+        // read(0, buffer, 10);
+
         int guess_len = my_strlen(buffer);
 
         if (guess_len != secret_len) { // Validate guess length
@@ -56,7 +65,6 @@ int main(int ac, char** av) {
             goto top;
         };
         if (checkSecret(buffer, guess_len) != 1) { // Validate guess is char numbers
-            // printf("Wrong type input\n");
             goto top;
         };
 
@@ -82,6 +90,7 @@ int main(int ac, char** av) {
         printf("Sorry, too many tries. The code was: %s\n", secrArr);
         return 0;
     }
+    }; // Closes while
     return 0;
 } // Closes main
 
