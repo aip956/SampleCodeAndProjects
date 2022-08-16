@@ -46,7 +46,7 @@ int main(int ac, char** av) {
         top:; // Come back here if error
         int bytes;
         char* buffer = (char *)(calloc(secret_len, sizeof(char)));
-        // while ((bytes = read(0, buffer, 10)) >= 0) {
+
             bytes = read(0, buffer, 10);
             if (bytes == 0) {
                 printf("50 bytes: %d\n", bytes);
@@ -58,7 +58,7 @@ int main(int ac, char** av) {
                 // printf("56 bytes: %d\n", bytes);
                 // printf("57: %s\n", buffer);
                 
-            // }; // Closes while
+
             
         // read(0, buffer, 10);
         int guess_len = my_strlen(buffer);
