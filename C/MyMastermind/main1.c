@@ -45,19 +45,21 @@ int main(int ac, char** av) {
         top:; // Come back here if error
         int bytes;
         char* buffer = (char *)(calloc(secret_len, sizeof(char)));
-        while ((bytes = read(0, buffer, 10)) >= 0) {
+        // while ((bytes = read(0, buffer, 10)) >= 0) {
+            bytes = read(0, buffer, 10);
             if (bytes == 0) {
+                printf("50 bytes: %d\n", bytes);
                 printf("Read EOF!\n");
                 return 0;
             } // Closes if
             else {
                 buffer[bytes] = '\0';
-                printf("%d\n", bytes);
-                printf("%s\n", buffer);
-            } // Closes else
-        
+                // printf("56 bytes: %d\n", bytes);
+                // printf("57: %s\n", buffer);
+                
+            // }; // Closes while
+            
         // read(0, buffer, 10);
-
         int guess_len = my_strlen(buffer);
 
         if (guess_len != secret_len) { // Validate guess length
@@ -78,20 +80,32 @@ int main(int ac, char** av) {
                 Y = Z - X;
                 printf("Well placed pieces: %d\n", X);
                 printf("Misplaced pieces: %d\n", Y);
+                // printf("82: %d\n", X == secret_len);
+                // printf("83 secLen: %d\n", secret_len);
                 if (X == secret_len) {
                     printf("Congratz! You did it!\n");
                     return 0;
                 } // Closes check for win
-            } // Closes check for valid guess are num chars
-        } // Closes if guess = secret length 
-    } // Closes for tries < max tries
 
-    if (round_num >= max_Tries) {
+            } // Closes check for valid guess are num chars
+
+        } // Closes if guess = secret length 
+
+
+
+    if (round_num >= max_Tries-1) {
         printf("Sorry, too many tries. The code was: %s\n", secrArr);
         return 0;
     }
-    }; // Closes while
+            } // Closes else for EOF        
+        } // Closes for tries < max tries
+    
+
+
+
     return 0;
+
+
 } // Closes main
 
 

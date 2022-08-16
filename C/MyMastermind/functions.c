@@ -87,16 +87,16 @@ char checkSecret(char* inp_secret, int secret_len) {
 char makeSecretArr(char* inp_secret, int secret_len, char* secrArr) {
     int i;
     // int secret_len = my_strlen(inp_secret);
-    printf("66strlen: %d\n", secret_len);
-    printf("64inpsec: %s\n", inp_secret);
-    printf("65: %d\n", checkSecret(inp_secret, secret_len) == 1);
+    // printf("66strlen: %d\n", secret_len);
+    // printf("64inpsec: %s\n", inp_secret);
+    // printf("65: %d\n", checkSecret(inp_secret, secret_len) == 1);
     if (checkSecret(inp_secret, secret_len) == 1) {
         for (i = 0; i < secret_len; i++) {
             secrArr[i] = inp_secret[i];
-            printf("68: %c\n", secrArr[i]);
+            // printf("68: %c\n", secrArr[i]);
         } // Closes for
     }
-    printf("74: %s\n", secrArr);
+    // printf("74: %s\n", secrArr);
     return *secrArr;
 } // Closes function
 

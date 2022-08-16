@@ -22,5 +22,5 @@ fclean: clean
 
 clean:
 	rm main1.o
-	rm ranSecret.o
+	rm functions.o
 
