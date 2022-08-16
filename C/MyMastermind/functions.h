@@ -21,7 +21,7 @@ void print_array(int*, int);
 int compareForX(char*, char*, int);
 int compareForZ(int*, int*);
 
-// void main();
+
 
 
 #endif

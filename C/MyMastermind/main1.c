@@ -49,7 +49,7 @@ int main(int ac, char** av) {
 
             bytes = read(0, buffer, 10);
             if (bytes == 0) {
-                printf("50 bytes: %d\n", bytes);
+                // printf("50 bytes: %d\n", bytes);
                 printf("Read EOF!\n");
                 return 0;
             } // Closes if

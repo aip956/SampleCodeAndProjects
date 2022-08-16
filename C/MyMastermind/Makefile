@@ -10,13 +10,6 @@ main1.o: main1.c
 functions.o: functions.c
 	gcc -c -Wall -Werror -Wextra functions.c 
 
-
-# my_ngram.o: my_ngram.c
-# 	gcc -c -Wall -Werror -Wextra my_ngram.c
-
-# functions.o: functions.c
-# 	gcc -c -Wall -Werror -Wextra functions.c
-
 fclean: clean
 	rm -f my_mastermind
 

@@ -1,6 +1,18 @@
 Frank is a simple Express backend </br>
 There is no database; the data is in the models folder </br>
 
+To run,</br>
+In terminal, go to directory SampleCodeAndProjects / Javascript / Express / Frank</br>
+At prompt, type node app.js</br>
+
+In browser, type address:
+http://localhost:8080/ 
+http://localhost:8080/birth_date 
+http://localhost:8080/wives 
+http://localhost:8080/birth_city
+http://localhost:8080/picture
+http://localhost:8080/public
+
 It has routes: </br>
 GET on /. This action will give randomly (in a pool of at least 20) a name of a song from Frank Sinatra. </br>
 GET on /birth_date. This action will give Frank Sinatra birth date. </br>
