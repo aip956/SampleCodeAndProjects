@@ -10,6 +10,7 @@ char secrArr[MAX_SECRET_SIZE] = {0};
 int secret_len = 4;
 int secr_elem_count_arr[MAX_SECRET_SIZE] = {0};
 int i, X, Y, Z, round_num;
+int c_Flag = 0;
 
 
 
@@ -20,6 +21,7 @@ int main(int ac, char** av) {
             if (isFlagC(av[av_ind]) == 1) {
                 secret_len = my_strlen(av[av_ind+1]);
                 makeSecretArr(av[av_ind+1], secret_len, secrArr);
+                c_Flag = 1;
             } // Closes if it's "-c"
             // Check if flag is a t
             if (isFlagT(av[av_ind]) == 1) {
@@ -27,11 +29,10 @@ int main(int ac, char** av) {
             } // Closes if it's "-t"
         } // For ac = 3 or 5 
     } // If ac > 3
-    else {
-        // secret_len = 4; // Default secret length = 4
-        // max_Tries = 8;
+    if (c_Flag == 0) {
         printf("I'll generate a secret of length 4 \n");
         // printf("%s\n", ranSecret(secret_len, secrArr));
+        ranSecret(secret_len, secrArr);
     } // Closes if no -c
 
 // Input
