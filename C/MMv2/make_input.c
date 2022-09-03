@@ -2,16 +2,7 @@
 #include<stdlib.h>
 #include <unistd.h>
 
-#ifndef STRUCT_CHAR_ARRAY
-#define STRUCT_CHAR_ARRAY
 
-typedef struct s_char_array
-{
-    int length;
-    int* tries;
-    char* secret;
-} char_array;
-#endif
 
 
 int my_strlen(char* param_1) {
@@ -56,13 +47,17 @@ char is_code_valid(char* inp_secret, int secret_len) {
 } // Closes function
 
 char make_secret_and_tries(char* av) {
-    int length = my_strlen(*av);
+    // if length of av > 1
+    // if there's a C flag and it's valid
+    // index of C plus one is secret
+    // index of T plus one is tries
     if (isFlagC == 1 && is_code_valid == 1) {
-        char_array mastermind = {
-            .length = length,
+        int secret_length = my_strlen(*av);
+        secret_and_tries = {
+            .length = secret_length,
             .secret = *av,
             .tries = *av,
-        }
+        };
     }
     
 };
