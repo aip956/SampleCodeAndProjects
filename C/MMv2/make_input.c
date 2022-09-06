@@ -2,20 +2,7 @@
 #include<stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#ifndef STRUCT_CHAR_STRUCT
-#define STRUCT_CHAR_STRUCT
-
-typedef struct s_char_array
-{
-    int length;
-    int tries;
-    char* secret;
-} char_struct;
-#endif
-
-struct secret_and_tries;
-
-
+#include "make_input.h"
 
 
 int my_strlen(char* param_1) {
@@ -65,56 +52,57 @@ char is_code_valid(char* inp_secret, int secret_len) {
 
 // will output char secret
 char make_secret (char* av){
-    int i, av_index, count, secret_len;
+    int i, av_index, secret_len;
     int av_len = my_strlen(av);
     char *flag_c = "-c";
     int isFlagC = 0;
+    int count = 0;
     char *secret;
     for (av_index = 1; av_index < av_len; av_index++) {
         // for each flag in av
-        char* flag = av[av_index];
-        int flag_len = my_strlen(av[av_index]);
+        char* flag = &av[av_index];
+        int flag_len = my_strlen(&av[av_index]);
         for (i = 0; i < flag_len; i++) {
             if (flag_c[i] == flag[i]) {
                 count ++;
                 if (count == 2) { // found -c
-                    secret = av[av_index+1];
+                    secret = &av[av_index+1];
                     isFlagC = 1;
                     secret_len = my_strlen(secret);
-                    if (is_code_valid(*secret, secret_len) == 0) {
+                    if (is_code_valid(secret, secret_len) == 0) {
                             secret = NULL;
                         };
                 } // Closes if -c
             } // closes search on av element
-            if (isFlagC = 0) {
-                create_secret(secret_len, secret);
+            if (isFlagC == 0) {
+                ranSecret(secret_len, secret);
             };
         }; // closes for av_index
     }; // closes for av
-    return secret;
+    return *secret;
 }; // Closes make_secret
 
 int make_max_tries (char* av){
- int i, av_index, count, tries_len;
+ int i, av_index;
     int av_len = my_strlen(av);
     char *flag_t = "-t";
-    int isFlagT = 0;
-    char *tries;
+    int count = 0;
+    int tries = 10;
+    // int isFlagT = 0;
     for (av_index = 1; av_index < av_len; av_index++) {
         // for each flag in av
-        char* flag = av[av_index];
-        int flag_len = my_strlen(av[av_index]);
+        char* flag = &av[av_index];
+        int flag_len = my_strlen(&av[av_index]);
         for (i = 0; i < flag_len; i++) {
             if (flag_t[i] == flag[i]) {
                 count ++;
                 if (count == 2) { // found -t
-                    tries = atoi(av[av_index+1]);
-                    return tries;
+                    tries = atoi(&av[av_index+1]);
                 } // Closes if -t
             } // closes search on av element
         }; // closes for av_index
-    return tries;
     };
+    return tries;
 };
 
 

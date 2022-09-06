@@ -1,4 +1,15 @@
-char_struct secret_and_tries;
+
+#ifndef STRUCT_CHAR_STRUCT
+#define STRUCT_CHAR_STRUCT
+
+typedef struct s_char_array
+{
+    int length;
+    int tries;
+    char* secret;
+} char_struct;
+#endif
+
 
 int my_strlen(char*);
 char* ranSecret(int, char*);

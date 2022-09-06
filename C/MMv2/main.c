@@ -3,21 +3,11 @@
 #include <unistd.h>
 #include "make_input.h"
 
-#ifndef STRUCT_CHAR_STRUCT
-#define STRUCT_CHAR_STRUCT
-
-typedef struct s_char_array
-{
-    int length;
-    int tries;
-    char* secret;
-} char_struct;
-#endif
-
 
 
 
 int main(int ac, char** av) {
+    printf("%d\n", ac);
 
     char_struct secret_and_tries = 
     {
