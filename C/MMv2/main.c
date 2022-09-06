@@ -1,9 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <unistd.h>
+#include "make_input.h"
 
-#ifndef STRUCT_CHAR_ARRAY
-#define STRUCT_CHAR_ARRAY
+#ifndef STRUCT_CHAR_STRUCT
+#define STRUCT_CHAR_STRUCT
 
 typedef struct s_char_array
 {
@@ -22,9 +23,8 @@ int main(int ac, char** av) {
     {
         .length = 4,
         .tries = 10,
-        .secret = make_random_secret(4),
+        // .secret = {0},
     };
-
-make_secret_and_tries(char** av);
-
+    make_secret_and_tries(*av, &secret_and_tries);
+return 0;
 }

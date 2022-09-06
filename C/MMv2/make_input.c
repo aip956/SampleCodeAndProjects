@@ -1,6 +1,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <unistd.h>
+#include <time.h>
+#ifndef STRUCT_CHAR_STRUCT
+#define STRUCT_CHAR_STRUCT
+
+typedef struct s_char_array
+{
+    int length;
+    int tries;
+    char* secret;
+} char_struct;
+#endif
+
+struct secret_and_tries;
 
 
 
@@ -95,8 +108,8 @@ int make_max_tries (char* av){
             if (flag_t[i] == flag[i]) {
                 count ++;
                 if (count == 2) { // found -t
-                    tries = av[av_index+1];
-                    return atoi(tries);
+                    tries = atoi(av[av_index+1]);
+                    return tries;
                 } // Closes if -t
             } // closes search on av element
         }; // closes for av_index
@@ -105,20 +118,14 @@ int make_max_tries (char* av){
 };
 
 
-char make_secret_and_tries(char* av) {
+char make_secret_and_tries(char* av, char_struct* s_and_t) {
     // if length of av > 1
     // if there's a C flag and it's valid
     // index of C plus one is secret
     // index of T plus one is tries
-    
-
-
-        int secret_length = my_strlen(*av);
-        secret_and_tries = {
-            .length = secret_length,
-            .secret = make_secret(*av);
-            .tries = make_max_tries(*av),
-        };
+    // s_and_t->length = secret_length;
+    s_and_t->secret = make_secret(*av);
+    s_and_t->tries = make_max_tries(*av);
 
     
 };

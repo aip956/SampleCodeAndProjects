@@ -1,18 +1,18 @@
 all: my_mastermind
 
 
-my_mastermind: main1.o functions.o
-	gcc -Wall -Werror -Wextra -o my_mastermind main1.o functions.o
+my_mastermind: main.o make_input.o
+	gcc -Wall -Werror -Wextra -o my_mastermind main.o make_input.o
 
-main1.o: main1.c
-	gcc -c -Wall -Werror -Wextra main1.c
+main.o: main.c
+	gcc -c -Wall -Werror -Wextra main.c
 
-functions.o: functions.c
-	gcc -c -Wall -Werror -Wextra functions.c 
+make_input.o: make_input.c
+	gcc -c -Wall -Werror -Wextra make_input.c
 
 fclean: clean
 	rm -f my_mastermind
 
 clean:
-	rm main1.o
-	rm functions.o
+	rm main.o
+	rm make_input.o
