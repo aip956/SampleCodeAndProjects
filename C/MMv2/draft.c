@@ -11,6 +11,7 @@ typedef struct s_char_array
     int length;
     int tries;
     char* secret;
+    char* av_arr;
 } char_struct;
 #endif
 
@@ -94,32 +95,34 @@ char make_secret (char* av){
 
 
 
-
-
-void make_secret_and_tries(char* av, char_struct* s_and_t) {
+void make_secret_and_tries(char_struct* s_and_t) {
     // s_and_t->length = secret_length;
     // s_and_t->secret = make_secret(av);
     // printf("av: %c\n", **av);
-       printf("av: %c\n", av[2]);
+    //    printf("101av: %c\n", av_arr);
     // printf("102: %c\n", make_secret(av));
 
-    s_and_t->secret = "0033";
-    printf("secret: %s\n", s_and_t->secret);
-    printf("tries: %d\n", s_and_t->tries);
+    // s_and_t->secret = "0033";
+    // printf("secret: %s\n", s_and_t->secret);
+    // printf("tries: %d\n", s_and_t->tries);
+    printf("108_av_arr: %c\n", s_and_t->av_arr[1]);
     // s_and_t->tries = make_max_tries(*av);    
 };
 
 
 int main(int ac, char** av) {
-    printf("ac: %d\n", ac);
-    printf("av: %s\n", av[1]);
+    // char** av_arr = &av[0];
+    // printf("ac: %d\n", ac);
+    printf("116_av: %s\n", av[1]);
     char_struct secret_and_tries = 
     {
         .length = 4,
         .tries = 10,
+        .av_arr = av,
         // .secret = {0},
     };
-    make_secret_and_tries(*av, &secret_and_tries);
+    printf("124_av_arr: %s\n", secret_and_tries.av_arr);
+    make_secret_and_tries(&secret_and_tries);
 return 0;
 }
 
