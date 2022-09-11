@@ -35,16 +35,20 @@ int my_strlen(char* param_1) {
  }; // Closes function
 
  char* rand_secret(char* secret) {
+    printf("rand_secret");
     char ranNum;
     int i;
+    printf("secret: %s\n", secret);
     srand(time(NULL));
     for (i = 0; i < 4; i++) {
         ranNum =  (48 + (rand() % 8));
         secret[i] = ranNum;
         printf("%c\n", secret[i]);
     } // Closes for int i
-    // secret[i] = '\0';
-    printf("19: %s\n", secret);
+    secret[i] = '\0';
+    printf("48: %c\n", secret[2]);
+    printf("49: %s\n", secret);
+    printf("50: %c\n", *secret);
     return secret;
 } // Closes function
 
@@ -82,7 +86,6 @@ char* make_secret (char** av, int ac) {
                     isFlagC = 1; 
                     printf("87 \n");
                     printf("93 av ind+1: %s\n", av[av_index + 1]);
-    //              check secret is valid
                         if (is_code_valid(av[av_index + 1], 4) == 1) {
                             char* secret = av[av_index + 1];
                             printf("88 sec: %c\n", *secret);
@@ -97,7 +100,9 @@ char* make_secret (char** av, int ac) {
         }; // closes for av
 //     printf("106 \n");
     }
+        printf("isflagc: %d\n", isFlagC);
         if (isFlagC == 0) {
+            printf("101isflagc: %d\n", isFlagC);
             rand_secret(secret);
             printf("120ransecr: %s\n", secret);
         };
@@ -148,6 +153,8 @@ t_game_state prep_init_state(int ac, char** av) {
 
 
 
+
+
 int main(int ac, char** av) {
     // printf("142_av: %s\n", av[1]);
     // printf("143_av: %s\n", av[2]);
@@ -156,7 +163,7 @@ int main(int ac, char** av) {
     printf("156 tries: %d\n", game_state.tries);
     printf("157 secr: %s\n", game_state.secret);
 
-    
+    // play_game(game_state);
 
 return 0;
 }
