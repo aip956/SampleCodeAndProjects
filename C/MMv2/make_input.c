@@ -5,115 +5,154 @@
 #include "make_input.h"
 
 
+
 int my_strlen(char* param_1) {
 // a = param_1 // param_1 is my pointer; = a = Program
     int index = 0;
     int length = 0;
     for (index = 0; param_1[index] != '\0'; index++) {
         // printf("20 ind: %d\n", index);
-        if (param_1[index] > 30) {
-            // printf("ascii: %d\n", param_1[index]);
+        // if (param_1[index] > 32) {
+            // printf("ascii#: %d\n", param_1[index]);
+            // printf("ascii char: %c\n", param_1[index]);
+            printf("ascii char: %c\n", param_1[index]);
             length++;
-            // printf("23 Ind/Len: %d\n", length);
-        } // Closes if
+            printf("23 Ind/Len: %d\n", length);
+        // } // Closes if
     } // Closes for
     return length;
  }; // Closes function
 
- char* ranSecret(int secret_len, char* secret) {
-    // printf("I'm generating a random secret \n");
-    // printf("13strlen: %d\n", secret_len);
+ void rand_secret(t_game_state* game_state_ptr) {
+    printf("rand_secret\n");
     char ranNum;
     int i;
     srand(time(NULL));
-    for (i = 0; i < secret_len; i++) {
+    for (i = 0; i < 4; i++) {
+        printf("39: %d\n", i);
         ranNum =  (48 + (rand() % 8));
-        // printf("%d %c\n", i, ranNum);
-        secret[i] = ranNum;
+        printf("rannum: %c\n", ranNum);
+        game_state_ptr->secret[i] = ranNum;
+        printf("%c\n", game_state_ptr->secret[i]);
     } // Closes for int i
-    secret[i] = '\0';
-    // printf("19: %s\n", secret);
-    return secret;
+    game_state_ptr->secret[i] = '\0';
+    printf("48: %c\n", game_state_ptr->secret[2]);
+    printf("49: %s\n", game_state_ptr->secret);
+    // printf("50: %c\n", *game_state_ptr);
+
 } // Closes function
 
-char is_code_valid(char* inp_secret, int secret_len) {
+int is_code_valid(char* code, int code_len) {
     int is_code_valid = 1;
-    // Check input secret is valid, and paste into secret array
-    // inp_secret is the input string after -c flag
-    for (int i = 0; i < secret_len; i++) {
-        if (inp_secret[i] < 48 || inp_secret[i] > 55) {
+    for (int i = 0; i < code_len; i++) {
+        if (code[i] < 48 || code[i] > 55) {
             printf("Wrong input! \n");
             return is_code_valid = 0;
-        } // Closes if not ascii 0 - 9
-    } // Closes for length of secret
+        };
+    };
+    printf("Code valid \n");
     return is_code_valid;
-}; // Closes function
+}; 
 
 
-// will output char secret
-char make_secret (char* av){
-    int i, av_index, secret_len;
-    int av_len = my_strlen(av);
+
+void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
+    int i, av_index;
+    printf("make_secret");
     char *flag_c = "-c";
     int isFlagC = 0;
     int count = 0;
-    char *secret;
-    for (av_index = 1; av_index < av_len; av_index++) {
-        // for each flag in av
-        char* flag = &av[av_index];
-        int flag_len = my_strlen(&av[av_index]);
-        for (i = 0; i < flag_len; i++) {
+      printf("74 \n");
+    for (av_index = 1; av_index < ac; av_index++) {
+        printf("76, av_ind: %d\n", av_index);
+        char* flag = av[av_index];
+        printf("79 flag: %s\n", flag);
+        for (i = 0; i < 2; i++) {
             if (flag_c[i] == flag[i]) {
                 count ++;
+                printf("count: %d\n", count);
                 if (count == 2) { // found -c
-                    secret = &av[av_index+1];
-                    isFlagC = 1;
-                    secret_len = my_strlen(secret);
-                    if (is_code_valid(secret, secret_len) == 0) {
-                            secret = NULL;
-                        };
-                } // Closes if -c
-            } // closes search on av element
-            if (isFlagC == 0) {
-                ranSecret(secret_len, secret);
-            };
-        }; // closes for av_index
-    }; // closes for av
-    return *secret;
+                    isFlagC = 1; 
+                    printf("87 \n");
+                    printf("93 av ind+1: %s\n", av[av_index + 1]);
+                        if (is_code_valid(av[av_index + 1], 4) == 1) {
+                            char* secret = av[av_index + 1];
+                            printf("88 sec: %c\n", *secret);
+                            printf("89 sec: %s\n", secret);  
+                            printf("100 \n");
+                        }
+                }
+//             printf("102 \n");
+            }     // closes search on av element
+//         printf("104 \n");
+        }; // closes for av
+//     printf("106 \n");
+    }
+        printf("isflagc: %d\n", isFlagC);
+        if (isFlagC == 0) {
+            printf("101isflagc: %d\n", isFlagC);
+
+            // char rand_secret_arr[4]="";
+            // char ranNum;
+            // int i_of_ran_secr;
+            // srand(time(NULL));
+            // for (i_of_ran_secr = 0; i_of_ran_secr < 4; i_of_ran_secr++) {
+            //     ranNum =  (48 + (rand() % 8));
+            //     rand_secret_arr[i_of_ran_secr] = ranNum;
+            //     printf("%c\n", ranNum);
+            //     printf("118 rand_sec[i]: %d, %c\n", i_of_ran_secr, rand_secret_arr[i_of_ran_secr]);
+            // } // Closes for int i
+            // rand_secret_arr[i_of_ran_secr] = '\0';
+            rand_secret(game_state_ptr);
+            // printf("109rand_secr: %s\n", secret); 
+
+        };
+    printf("110 \n");
+    // printf("121*sec: %c\n", *secret);
+    // printf("122sec: %s\n", secret);
+
 }; // Closes make_secret
 
-int make_max_tries (char* av){
- int i, av_index;
-    int av_len = my_strlen(av);
+int make_tries (char** av, int ac){
+    int i, av_index;
+    printf("make tries");
+    int tries = 10;
     char *flag_t = "-t";
     int count = 0;
-    int tries = 10;
-    // int isFlagT = 0;
-    for (av_index = 1; av_index < av_len; av_index++) {
-        // for each flag in av
-        char* flag = &av[av_index];
-        int flag_len = my_strlen(&av[av_index]);
-        for (i = 0; i < flag_len; i++) {
+    printf("129 \n");
+    for (av_index = 1; av_index < ac; av_index++) {
+        printf("130, av_ind: %d\n", av_index);
+        char* flag = av[av_index];
+        printf("132 flag: %s\n", flag);
+        for (i = 0; i < 2; i++) {
             if (flag_t[i] == flag[i]) {
                 count ++;
+                printf("131count: %d\n", count);
                 if (count == 2) { // found -t
-                    tries = atoi(&av[av_index+1]);
-                } // Closes if -t
-            } // closes search on av element
-        }; // closes for av_index
-    };
+                    printf("138 \n");
+                    tries = atoi(av[av_index + 1]);
+                    printf("140 av_ind+1: %d\n", av_index + 1);
+                    printf("141 av ind+1: %s\n", av[av_index + 1]);
+                    printf("142 tries: %d\n",tries);
+                } // Closes isFlagT
+            }
+        }  
+    }
     return tries;
+}
+
+
+t_game_state prep_init_state(int ac, char** av) {
+   t_game_state game_state = {
+        .secret = {0},
+        .tries = make_tries(av, ac),
+    };
+    t_game_state *game_state_ptr = &game_state;
+    make_secret(av, ac, game_state_ptr);
+    printf("162 tries: %d\n", game_state.tries);
+    printf("163 secr: %s\n", game_state.secret);
+    printf("163 secr: %c\n", game_state.secret[2]);
+    return game_state;
 };
 
 
-char make_secret_and_tries(char* av, char_struct* s_and_t) {
-    // if length of av > 1
-    // if there's a C flag and it's valid
-    // index of C plus one is secret
-    // index of T plus one is tries
-    // s_and_t->length = secret_length;
-    s_and_t->secret = make_secret(*av);
-    s_and_t->tries = make_max_tries(*av);
-
-    
-};

@@ -1,19 +1,18 @@
 
-#ifndef STRUCT_CHAR_STRUCT
-#define STRUCT_CHAR_STRUCT
+#ifndef STRUCT_t_game_state
+#define STRUCT_t_game_state
 
-typedef struct s_char_array
+typedef struct s_game_state
 {
-    int length;
     int tries;
-    char* secret;
-} char_struct;
+    char secret[5];
+} t_game_state;
 #endif
 
 
 int my_strlen(char*);
-char* ranSecret(int, char*);
-char is_code_valid(char*, int);
-char make_secret(char*);
-int make_max_tries(char*);
-char make_secret_and_tries(char*, char_struct*);
+void rand_secret(t_game_state*);
+int is_code_valid(char*, int);
+void make_secret(char**, int, t_game_state*);
+int make_tries(char*);
+t_game_state prep_init_state(int, char**);
