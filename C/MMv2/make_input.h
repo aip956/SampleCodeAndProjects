@@ -14,5 +14,5 @@ int my_strlen(char*);
 void rand_secret(t_game_state*);
 int is_code_valid(char*, int);
 void make_secret(char**, int, t_game_state*);
-int make_tries(char*);
+int make_tries(char**, int);
 t_game_state prep_init_state(int, char**);

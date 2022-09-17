@@ -31,23 +31,22 @@ int my_strlen(char* param_1) {
  }; // Closes function
 
  void rand_secret(t_game_state* game_state_ptr) {
-    printf("rand_secret\n");
-    char ranNum;
-    int i;
+    char ran_char;
+    int ran_num;
+    int possible[8] = {'0','0','0','0','0','0','0','\0'};
+    int i = 0;
     srand(time(NULL));
-    for (i = 0; i < 4; i++) {
-        printf("39: %d\n", i);
-        ranNum =  (48 + (rand() % 8));
-        printf("rannum: %c\n", ranNum);
-        game_state_ptr->secret[i] = ranNum;
-        printf("%c\n", game_state_ptr->secret[i]);
-    } // Closes for int i
+    while (i < 4) {
+        ran_num = (rand() % 8);
+        if (possible[ran_num] != 1) {
+            ran_char = 48 + ran_num;
+            game_state_ptr->secret[i] = ran_char;
+            possible[ran_num] = 1;
+            i++;
+        }; 
+    };
     game_state_ptr->secret[i] = '\0';
-    printf("48: %c\n", game_state_ptr->secret[2]);
-    printf("49: %s\n", game_state_ptr->secret);
-
-
-}; // Closes function
+}; 
 
 int is_code_valid(char* code, int code_len) {
     int is_code_valid = 1;
