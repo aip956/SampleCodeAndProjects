@@ -47,7 +47,10 @@ void fill_sec_array(t_game_arrays* game_arrays_ptr, t_game_state* game_state_ptr
 //  game_arrays_ptr->guess_elem_count_arr[index] = 
 
 void fill_guess_array(t_game_arrays* game_arrays_ptr, char* buffer) {
-    game_arrays_ptr->guess_elem_count_arr = {0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < 8; i++){
+        game_arrays_ptr->guess_elem_count_arr[i] = 0;
+    }
+   
     int index;
     for (index = 0; index < 4; index++) {
 
