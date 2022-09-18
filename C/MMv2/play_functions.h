@@ -5,8 +5,8 @@
 
 typedef struct s_game_arrays
 {
-    int secr_elem_count_arr[5];
-    int guess_elem_count_arr[5];
+    int secr_elem_count_arr[8];
+    int guess_elem_count_arr[8];
 } t_game_arrays;
 #endif
 
