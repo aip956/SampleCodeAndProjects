@@ -5,25 +5,6 @@
 #include "make_input.h"
 
 
-
-int my_strlen(char* param_1) {
-// a = param_1 // param_1 is my pointer; = a = Program
-    int index = 0;
-    int length = 0;
-    for (index = 0; param_1[index] != '\0'; index++) {
-        // printf("20 ind: %d\n", index);
-        // if (param_1[index] > 32) {
-            // printf("ascii#: %d\n", param_1[index]);
-            // printf("ascii char: %c\n", param_1[index]);
-            printf("ascii char: %c\n", param_1[index]);
-            length++;
-            printf("23 Ind/Len: %d\n", length);
-        // } // Closes if
-    } // Closes for
-    return length;
- }; // Closes function
-
-
 void rand_secret(t_game_state* game_state_ptr) {
     char ran_char;
     int ran_num;
