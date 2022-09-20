@@ -41,10 +41,6 @@ void fill_sec_array(t_game_arrays* game_arrays_ptr, t_game_state* game_state_ptr
 } // Closes function
  
 
- // buffer[index] = char 1
- // buffer [0] = char 0 = ascii 48
- // buffer_elem = buffer[index] - 48 = 0
-//  game_arrays_ptr->guess_elem_count_arr[index] = 
 
 void fill_guess_array(t_game_arrays* game_arrays_ptr, char* buffer) {
     for (int i = 0; i < 8; i++){
@@ -72,31 +68,25 @@ void fill_guess_array(t_game_arrays* game_arrays_ptr, char* buffer) {
     } // Closes for
 } // Closes function
 
-int compareForX(t_game_state* game_state_ptr, char* buffer) {
+int compare_for_X(t_game_state* game_state_ptr, char* buffer) {
     int X = 0; 
     for (int i = 0; i < 4; i++) {
-        // printf("74i: %d\n", i);
-        // printf("75secret_i: %c\n", game_state_ptr->secret[i]);
-        // printf("76guess_i: %c\n", buffer[i]);
+        
         if (game_state_ptr->secret[i] == buffer[i]) {
             X++;
-            // printf("79i: %d, X: %d\n", i, X);
+            
         }
     }
     return X;
 } // closes
 
-int compareForZ(t_game_arrays* game_arrays_ptr) {
+int compare_for_Z(t_game_arrays* game_arrays_ptr) {
     int Z = 0;
     for (int i = 0; i < 8; i++) {
-        // printf("68i: %d\n", i);
-        // printf("68secret[i]: %d\n",game_arrays_ptr->secr_elem_count_arr[i]);
-        // printf("69guess[i]: %d\n",game_arrays_ptr->guess_elem_count_arr[i]);
-        // printf("73: %d\n", game_arrays_ptr->secr_elem_count_arr[i] > 0 && game_arrays_ptr->guess_elem_count_arr[i] > 0);
         if (game_arrays_ptr->secr_elem_count_arr[i] > 0 && game_arrays_ptr->guess_elem_count_arr[i] > 0) {
             if (game_arrays_ptr->secr_elem_count_arr[i] <= game_arrays_ptr->guess_elem_count_arr[i]) {
                 Z += game_arrays_ptr->secr_elem_count_arr[i];
-                // printf("70i: %d, Z: %d\n", i, Z);
+                
             }
         } // if
     } // for
@@ -104,55 +94,54 @@ int compareForZ(t_game_arrays* game_arrays_ptr) {
 }
 
 int play_round(t_game_state* game_state_ptr, t_game_arrays* game_arrays_ptr) {
-    for (int round_num = 0; round_num < game_state_ptr->tries; round_num++) {
+    // for (int round_num = 0; round_num < game_state_ptr->tries; round_num++)
+    int round_num = 0; 
+    while (round_num < game_state_ptr->tries) {
         // printf("tries: %d\n", game_state_ptr->tries);
         printf("---\n");
         printf("Round %d\n", round_num);
-        // top:; // Come back here if error
-        int bytes;
-        char* buffer = (char *)(calloc(4, sizeof(char)));
-        bytes = read(0, buffer, 10);
-        if (bytes == 0) {
-            // printf("36 bytes: %d\n", bytes);
-            printf("Read EOF!\n");
-            return 0;
-        }
-        else {
-            buffer[bytes] = '\0';
-            // printf("56 bytes: %d\n", bytes);
-            printf("57: %s\n", buffer);
-            // int guess_len = my_strlen(buffer);
-            // printf("guess_len: %d\n", guess_len);
 
-            // if (guess_len != 4) { // Validate guess length
-            //     printf("Wrong number of inputs\n");
-            // };
-
-            // while (checkSecret(buffer, guess_len) != 1) { // Validate guess is char numbers
-            //     goto top;
-            // };
-            if (is_code_valid(buffer) == 1) { //changing to while is inf loop
-                fill_guess_array(game_arrays_ptr, buffer);
-                int X = compareForX(game_state_ptr, buffer); 
-                int Z = compareForZ(game_arrays_ptr); 
-                int Y = Z - X;
-                printf("Well placed pieces: %d\n", X);
-                printf("Misplaced pieces: %d\n", Y);
-                    if (X == 4) {
-                        printf("Congratz! You did it!\n");
-                        return 0;
-                    } // Closes check for win
-            } // if code valid
-     
-            if (round_num >= game_state_ptr->tries-1) {
-                printf("Sorry, too many tries. The code was: %s\n", game_state_ptr->secret);
+        
+            int bytes;
+            char* buffer = (char *)(calloc(4, sizeof(char)));
+            bytes = read(0, buffer, 5);
+            if (bytes == 0) {
+                // printf("36 bytes: %d\n", bytes);
+                printf("Read EOF!\n");
                 return 0;
             }
-        } // Closes else for EOF        
-    } // Closes for tries < max tries
-        
+            while (round_num < game_state_ptr->tries) {
+                if (is_code_valid(buffer) != 1){
+                printf("148: Wrong input! \n");
+                }
+                else {
+                buffer[bytes] = '\0';
+                printf("57: %s\n", buffer);
+                printf("134 \n");
+                if (is_code_valid(buffer) == 1) { //changing to while is inf loop
+                    fill_guess_array(game_arrays_ptr, buffer);
+                    int X = compare_for_X(game_state_ptr, buffer); 
+                    int Z = compare_for_Z(game_arrays_ptr); 
+                    int Y = Z - X;
+                    printf("Well placed pieces: %d\n", X);
+                    printf("Misplaced pieces: %d\n", Y);
+                        if (X == 4) {
+                            printf("Congratz! You did it!\n");
+                            return 0;
+                        } // Closes check for win
+                    printf("130Round: %d\n", round_num);    
+                    round_num++;
+                } // if code valid
+            };
+        }
+        if (round_num >= game_state_ptr->tries) {
+            printf("1365Round: %d\n", round_num); 
+            printf("Sorry, too many tries. The code was: %s\n", game_state_ptr->secret);
+            return 0;
+        } // Closes else for EOF 
+    
+    } // Closes for tries < max tries  
     return 0;
-
 }
 
 

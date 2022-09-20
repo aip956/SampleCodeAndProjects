@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <time.h>
 #include "make_input.h"
+#include "play_functions.h"
 
 
 void rand_secret(t_game_state* game_state_ptr) {
@@ -26,13 +27,8 @@ void rand_secret(t_game_state* game_state_ptr) {
 int is_code_valid(char* code) {
     int is_code_valid = 1;
     for (int i = 0; i < 4; i++) {
-        printf("[i]: %d\n", i);
-        printf("code[i]: %c\n", code[i]);
-        printf("code[i] ascii: %d\n", code[i]);
-        printf("31<48: %d\n", code[i] < 48);         
-        printf("32>55: %d\n", code[i] > 55);
         if (code[i] < 48 || code[i] > 55) {
-            printf("Wrong input! \n");
+            
             return is_code_valid = 0;
         };
     };
@@ -44,18 +40,18 @@ int is_code_valid(char* code) {
 void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
     int i, av_index;
     char *flag_c = "-c";
-    int isFlagC = 0;
+    int is_flag_C = 0;
     int count = 0;
+    int valid_code;
     for (av_index = 1; av_index < ac; av_index++) {
         char* flag = av[av_index];
         for (i = 0; i < 2; i++) {
             if (flag_c[i] == flag[i]) {
                 count ++;
                 if (count == 2) { 
-                    isFlagC = 1; 
-                    printf("isFlagC: %d\n", isFlagC);
-                    printf("code: %s\n", av[av_index + 1]);
-                    if (is_code_valid(av[av_index + 1]) == 1) {
+                    is_flag_C = 1; 
+                    valid_code = is_code_valid(av[av_index + 1]);
+                    if (valid_code == 1) {
                         for (int secr_ind = 0; secr_ind < 4; secr_ind++) {
                             game_state_ptr->secret[secr_ind] = av[av_index + 1][secr_ind];
                         };
@@ -64,10 +60,10 @@ void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
             };     
         }; 
     };
-        if (isFlagC == 0 || is_code_valid(av[av_index + 1]) == 0) {
+        if (is_flag_C == 0 || valid_code != 1) {
+            printf("I'll generate a random code \n");
             rand_secret(game_state_ptr);
-        };
-}; 
+        };}; 
 
 
 int make_tries (char** av, int ac){
