@@ -23,9 +23,14 @@ void rand_secret(t_game_state* game_state_ptr) {
     game_state_ptr->secret[i] = '\0';
 }; 
 
-int is_code_valid(char* code, int code_len) {
+int is_code_valid(char* code) {
     int is_code_valid = 1;
-    for (int i = 0; i < code_len; i++) {
+    for (int i = 0; i < 4; i++) {
+        printf("[i]: %d\n", i);
+        printf("code[i]: %c\n", code[i]);
+        printf("code[i] ascii: %d\n", code[i]);
+        printf("31<48: %d\n", code[i] < 48);         
+        printf("32>55: %d\n", code[i] > 55);
         if (code[i] < 48 || code[i] > 55) {
             printf("Wrong input! \n");
             return is_code_valid = 0;
@@ -48,7 +53,9 @@ void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
                 count ++;
                 if (count == 2) { 
                     isFlagC = 1; 
-                    if (is_code_valid(av[av_index + 1], 4) == 1) {
+                    printf("isFlagC: %d\n", isFlagC);
+                    printf("code: %s\n", av[av_index + 1]);
+                    if (is_code_valid(av[av_index + 1]) == 1) {
                         for (int secr_ind = 0; secr_ind < 4; secr_ind++) {
                             game_state_ptr->secret[secr_ind] = av[av_index + 1][secr_ind];
                         };
@@ -57,7 +64,7 @@ void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
             };     
         }; 
     };
-        if (isFlagC == 0) {
+        if (isFlagC == 0 || is_code_valid(av[av_index + 1]) == 0) {
             rand_secret(game_state_ptr);
         };
 }; 
