@@ -1,4 +1,3 @@
-
 #ifndef STRUCT_t_game_state
 #define STRUCT_t_game_state
 

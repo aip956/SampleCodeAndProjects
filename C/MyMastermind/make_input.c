@@ -24,17 +24,16 @@ void rand_secret(t_game_state* game_state_ptr) {
     game_state_ptr->secret[i] = '\0';
 }; 
 
+
 int is_code_valid(char* code) {
     int is_code_valid = 1;
     for (int i = 0; i < 4; i++) {
         if (code[i] < 48 || code[i] > 55) {
-            
             return is_code_valid = 0;
         };
     };
     return is_code_valid;
 }; 
-
 
 
 void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
@@ -61,9 +60,9 @@ void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
         }; 
     };
         if (is_flag_C == 0 || valid_code != 1) {
-            // printf("I'll generate a random code \n");
             rand_secret(game_state_ptr);
-        };}; 
+        };
+}; 
 
 
 int make_tries (char** av, int ac){
@@ -76,7 +75,7 @@ int make_tries (char** av, int ac){
         for (i = 0; i < 2; i++) {
             if (flag_t[i] == flag[i]) {
                 count ++;
-                if (count == 2) { // found -t
+                if (count == 2) {
                     tries = atoi(av[av_index + 1]);
                 }; 
             };
