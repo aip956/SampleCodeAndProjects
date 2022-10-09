@@ -42,7 +42,10 @@ void make_secret (char** av, int ac, t_game_state* game_state_ptr) {
     int is_flag_C = 0;
     int count = 0;
     int valid_code;
+
     for (av_index = 1; av_index < ac; av_index++) {
+        // check if there is a c flag
+        // if yes, indicate index
         char* flag = av[av_index];
         for (i = 0; i < 2; i++) {
             if (flag_c[i] == flag[i]) {

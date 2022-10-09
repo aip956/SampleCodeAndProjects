@@ -49,6 +49,36 @@ For each element/digit in the guess, check against the secret to determine if it
 To check the mismatched places (right number and wrong place), generate an array for the secret and guess, indicating the number of elements by index. For example, a secret of 0232 = [1, 0, 2, 1, 0, 0, 0, 0]. For each digit, compare the secret and guess arrays; where they are both > 0 is a match, and the minimum is the number of matches. 
     *(Functions fill_array, compareForZ)
 
+Here's my basic logic and structure:
+Main: 
+* take in the input, 
+* create a game state (determine the secret and tries)
+* play the game with the game state
+
+Create a game state:
+* take in the ac and av
+* determine if there is a -c and/or -t flag
+* if there's a -c, the secret is the next index over in the av
+* * validate the secret is all number characters
+* * if the input secret is not valid or if there is no -c, create a random secret
+* if there's a -t, 
+* * the number of tries is atoi of the next value of av
+* * if no -t, number of tries is 10
+
+Play the game:
+* take in the game state (of secret and number of tries)
+* Play a round
+* * read in the input guess
+* * have the EOF section
+* * check the guess is valid (all number chars and right length)
+* * compare the secret to the guess
+* * * determine number of well-placed matches
+* * * determine mis-placed matches
+* * Determine if the player won
+* * Output the X and Y (well and mis-placed)
+* Determine if the player has more guesses left 
+
+
 
 ## Installation
 TODO - How to install your project? npm install? make? make re?
