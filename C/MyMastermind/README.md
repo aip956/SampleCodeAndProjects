@@ -2,7 +2,6 @@
 ***
 
 ## Task
-TODO - What is the problem? And where is the challenge?
 This is an implementation of the Mastermind number guessing game. There are two players, 
 player 1 and player 2.</br>
 There are 8 pieces of different colors, and a secret code composed of 4 distinct pieces.</br>
@@ -13,7 +12,6 @@ Player 1 can also enter the maximum number of tries the player 2 will have.</br>
 
 
 ## Description
-TODO - How have you solved the problem?
 Determine if Player 1 has entered a secret and/or maximum number of tries. 
 If so, determine if those inputs are valid (numbers). If no secret was entered, 
 generate a random number secret of length 4. </br>
@@ -81,8 +79,10 @@ Play the game:
 
 
 ## Installation
-TODO - How to install your project? npm install? make? make re?
-No installation needed. Program run from terminal command line.
+Program run from terminal command line.
+Navigate to the directory to clone the repo
+Run "git clone 
+From terminal in corresponding directory, type "./my_mastermind" to run the program.
 
 ## Usage
 TODO - How does it work?
