@@ -35,7 +35,7 @@ if (s1.length != s2.length) {
 return diff;
 }
 
-// console.log(my_levenshtein("ggactga", "GGACTGA"));
+console.log(my_levenshtein("ggactga", "GGACTGA"));
 // console.log(my_levenshtein("GGACTGA", "GGACTGA"));
 // console.log(my_levenshtein("ACCAGGG", "ACTATGG"));
 // console.log(my_levenshtein("GGACGGATTCTG", "AGG"));

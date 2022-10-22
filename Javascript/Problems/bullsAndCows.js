@@ -62,5 +62,6 @@
   return(`${x}A${y}B`);
   };
 
-
-  console.log(getHint("1123", "0111"))
+input1 = "1123";
+input2 = "0111";
+  console.log(getHint(input1, input2));

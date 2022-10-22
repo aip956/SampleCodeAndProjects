@@ -54,7 +54,10 @@ Main:
 * play the game with the game state
 
 Create a game state:
-* take in the ac and av
+* take in the ac and av, the input 
+* (eg, ./my_mastermind -c "0123" -t "4", 
+* * there are 5 terms; ac = 5
+* * the input array, av = [./my_mastermind, -c, "0123", -t, "4"])
 * determine if there is a -c and/or -t flag
 * if there's a -c, the secret is the next index over in the av
 * * validate the secret is all number characters
@@ -80,13 +83,15 @@ Play the game:
 
 ## Installation
 Program run from terminal command line.
-Navigate to the directory to clone the repo
-Run "git clone 
-From terminal in corresponding directory, type "./my_mastermind" to run the program.
+<pre><code>Navigate to the directory to clone the repository
+Type: git clone https://github.com/aip956/MyMM.git (to clone)
+Type: cd/MyMM to change into the project directory
+Type: ./my_mastermind -c "0123" -t "4" (to run the program)
+</code></pre>
+
 
 ## Usage
-TODO - How does it work?
 Player one types program name, optionally can add secret (-c) and/or max tries (-t):
-./my_mastermind -c "0123" -t "4"</br>
-./my_mastermind -c "0123"</br>
-./my_mastermind -t "4"</br>
+    <pre><code>./my_mastermind -c "0123" -t "4"</br>
+    ./my_mastermind -c "0123"</br>
+    ./my_mastermind -t "4"</br></pre></code>
