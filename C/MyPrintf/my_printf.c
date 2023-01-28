@@ -6,12 +6,12 @@
 // 
 void reg_printf(char* ch) {
 // printf("%c\n", *ch);
-write(1, ch, 1);
+write(1, ch, 10);
 write(1, "\n", 1);
 }
 
 int main() {
-    char c[1] = "f";
+    char c[100] = "fghijklm";
     // char p = &c;
     int d = 5;
 

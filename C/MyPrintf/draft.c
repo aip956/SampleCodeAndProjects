@@ -7,17 +7,19 @@
 // determine number of input
 
 void my_pr(const char* format,...){
-    printf("10: %s\n", format);
+    // printf("10: %s\n", format);
+    char buffer[100] = {0};
     va_list args;
-    printf("13: %d\n", args);
     va_start(args, format);
     // vprintf(format, args);
-// for (int i = 0; format[i] != '\0'; i++){
- 
+for (int i = 0; format[i] != '\0'; i++){
+ buffer[i] = format[i];
 
-//  write(1, format, 1);
-// write(1, "/n", 1);
-// }
+}
+// printf("17: %s\n", buffer);
+write(1, &buffer, 100);
+write(1, "/n", 1);
+
     
     va_end(args);
 }

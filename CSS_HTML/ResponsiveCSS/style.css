@@ -21,15 +21,11 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-
-
 }
 @media (max-width: 600px) {
     .cont_side {
         flex-direction: column;
-      align-items: stretch;
-        
-      
+        align-items: stretch;
     }
     .content, .sidebar {
     padding: 25px 0;
