@@ -4,18 +4,51 @@
 #include <unistd.h>
 
 // 
-void reg_printf(char* ch) {
+void print_char(char* ch) {
 // printf("%c\n", *ch);
 write(1, ch, 10);
 write(1, "\n", 1);
 }
 
+// void print_int(int ) {
+// // printf("%c\n", *ch);
+// write(1, ch, 10);
+// write(1, "\n", 1);
+// }
+
+
+void my_pr(char* string, ...) {
+    va_list args;
+    int ind = 0, j = 0;
+    char buffer[50] = {};
+    char temp[50] = {};
+    char* string_out;
+    va_start(args, str);
+
+    while (args[ind] != '\0') {
+        printf("Form[ind]: %c\n", args[ind]);
+        if (args[ind] == '%') {
+            printf("%c\n", args[ind+1]);
+            switch (args[i+1]) {
+                case 'd': {
+                    itoa(va_arg(args, int));
+                }
+            }
+            
+            print_int(va_arg("%d", va_arg(args, int)))
+
+        }
+        ind ++; 
+    }
+}
+
 int main() {
-    char c[100] = "fghijklm";
+    char c[100] = "%d\n";
     // char p = &c;
     int d = 5;
 
-    reg_printf(c);
+    // reg_printf(c);
+    my_pr(d);
 
     // my_printf("%c\n", c);
     // my_printf("%p\n", *p);
@@ -28,3 +61,7 @@ int main() {
 
     return 0;
 }
+
+// main has thing to print
+// function to determine cases
+// function for 

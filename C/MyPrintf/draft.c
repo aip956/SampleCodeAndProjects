@@ -6,7 +6,7 @@
 // determine if input is string, char, int
 // determine number of input
 
-void my_pr(const char* format,...){
+void my_pr(char* format,...){
     // printf("10: %s\n", format);
     char buffer[100] = {0};
     va_list args;

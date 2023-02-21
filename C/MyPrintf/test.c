@@ -5,11 +5,15 @@
 
 int sumnum(int num, ...) {
     // num = number of integers
+    // . . .  = variable number of arguments
     printf("7num: %d\n", num);
     int sum = 0;
     va_list argptr;
+    // va list variable number, argptr
+    printf("11: argptr: %s\n", argptr);
     int count = 0;
     va_start(argptr, num);
+
     while (count < num) {
         // printf("14va_arg: %d\n", va_arg(argptr, int));
         sum += va_arg(argptr, int); // argptr, type int
@@ -26,13 +30,13 @@ void printstr(int num, ...){
     va_list argptr;
     va_start(argptr, num);
     while(count < num) {
-        ptr = va_arg(argptr, char*);
+        // ptr = va_arg(argptr, char*);
         printf("ptr = %s\n", ptr);
 
         count++;
     }
     va_end(argptr);
-
+ 
 }
 
 int main(int argc, char** argv) {
@@ -45,7 +49,7 @@ int main(int argc, char** argv) {
     char a[100] = "-1234";
     int b = atoi(a);
     printf("b: %d\n", b);
-    printf("b: %p\n", b);
+    // printf("d: %p\n", *b);
 
     return 0;
 }
