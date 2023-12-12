@@ -29,6 +29,15 @@ const oTet = [
     [0, 1, width, width+1]
 ]
 
+const iTet = [
+    [1, width+1, width*2+1, width*3+1],
+    [width, width+1, width+2, width+3],
+    [1, width+1, width*2+1, width*3+1],
+    [width, width+1, width+2, width+3],
+]
+
+const theTets = [jTet, zTet, oTet, iTet]
+
 
 
 
